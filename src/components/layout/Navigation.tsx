@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { Menu } from 'lucide-react'
 import { useState } from 'react'
-import { ThemeSwitch } from './ThemeSwitch'
+import { ThemeSwitch } from '@/components/layout/ThemeSwitch'
 import {
     Sheet,
     SheetContent,
@@ -16,18 +16,17 @@ import {
 
 const navigation = [
     { title: '퀵링크', url: '/q' },
-    { title: '가이드', url: '/act' },
-    { title: '시세', url: '/price/currency' },
-    { title: '스트리머', url: '/s' },
-    { title: '팁', url: '/tip' },
-    { title: '업데이트', url: '/update' },
-    { title: '후원하기', url: '/donate' },
+    { title: '직업별 디스코드', url: '/discord' },
+    { title: '토큰 시세', url: '/token' },
+    // { title: '스트리머', url: '/s' },
+    // { title: '업데이트', url: '/update' },
+    // { title: '후원하기', url: '/donate' },
 ]
   
 export function Navigation() {
     const [isOpen, setIsOpen] = useState(false)
     const closeSheet = () => setIsOpen(false)
-  
+    
     return (
       <nav className="flex w-full">
         {/* 로고나 사이트 제목이 필요하다면 여기에 */}
@@ -51,7 +50,7 @@ export function Navigation() {
         </div>
   
         {/* 테마 스위치와 모바일 메뉴 */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 ml-auto">
           <div className="switch">
             <ThemeSwitch />
           </div>

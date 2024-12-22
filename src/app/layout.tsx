@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'next-themes'
-import { Navigation } from './components/Navigation'
+import { Navigation } from '../components/layout/Navigation'
 import './globals.css'
 
 export default function RootLayout({

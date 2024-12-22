@@ -1,14 +1,223 @@
 {
-  "topics": [
+  "sites": [
     {
-      "id": "1",
-      "title": "html",
-      "body": "html is ..!!"
+      "id": 1,
+      "name": "와우 헤드",
+      "description": "Wow에 대한 가장 큰 정보 사이트. 뉴스, 직업, 장비, 전문 기술, 공격대, 형상변환 등에 대한 정보를 제공",
+      "icon": "/images/sites/wowhead.png",
+      "url": "https://www.wowhead.com/",
+      "category": "guide"
     },
     {
-      "id": "2",
-      "title": "css",
-      "body": "css is ..!!"
+      "id": 2,
+      "name": "워크래프트 로그",
+      "description": "전투 분석을 제공하는 웹 사이트",
+      "icon": "/images/sites/wcl.png",
+      "url": "https://ko.warcraftlogs.com/",
+      "category": "tool"
+    },
+    {
+      "id": 3,
+      "name": "Archon",
+      "description": "역할군별 메타 빌드, 장비와 관련된 분석 정보 제공",
+      "icon": "/images/sites/archon.png",
+      "url": "https://www.archon.gg/wow",
+      "category": "tool"
+    },
+    {
+      "id": 4,
+      "name": "Raider",
+      "description": "캐릭터 및 길드 프로필, Mythic+ 점수, 공격대 진행 상황 등의 정보 제공",
+      "icon": "/images/sites/raider.png",
+      "url": "https://raider.io",
+      "category": "tool"
+    },
+    {
+      "id": 5,
+      "name": "WoW Analyzer",
+      "description": "Warcraft Logs와 연계하여 개인 피드백과 통계 제공",
+      "icon": "/images/sites/wowanal.png",
+      "url": "https://wowanalyzer.com/",
+      "category": "tool"
+    },
+    {
+      "id": 6,
+      "name": "Murlok",
+      "description": "직업별 PvP에 대한 가이드 제공",
+      "icon": "/images/sites/murlok.png",
+      "url": "https://murlok.io/",
+      "category": "guide"
+    },
+    {
+      "id": 7,
+      "name": "Wago.io",
+      "description": "WoW 애드온 WeakAuras, Plater, ElvUI 등의 프로필과 문자열을 공유하는 커뮤니티 사이트",
+      "icon": "/images/sites/wago.png",
+      "url": "https://wago.io/",
+      "category": "addon"
+    },
+    {
+      "id": 8,
+      "name": "CurseForge",
+      "description": "World of Warcraft 애드온 다운로드 및 관리를 위한 대표적인 플랫폼",
+      "icon": "/images/sites/curseforge.png",
+      "url": "https://www.curseforge.com/wow",
+      "category": "addon"
+    },
+    {
+      "id": 9,
+      "name": "WoW Professions",
+      "description": "WoW의 모든 전문기술에 대한 상세 가이드와 레벨링 경로를 제공하는 사이트",
+      "icon": "/images/sites/profession.png",
+      "url": "https://www.wow-professions.com/",
+      "category": "guide"
+    },
+    {
+      "id": 10,
+      "name": "Bloodmallet",
+      "description": "각 클래스와 특성별 최적의 장비, 특성, DPS 시뮬레이션 결과를 제공하는 사이트",
+      "icon": "/images/sites/bloodmallet.png",
+      "url": "https://bloodmallet.com/",
+      "category": "tool"
+    },
+    {
+      "id": 11,
+      "name": "Petopia",
+      "description": "사냥꾼 직업을 위한 야수 정보와 위치, 능력치 등 포괄적인 정보를 제공하는 사이트",
+      "icon": "/images/sites/petopia.png",
+      "url": "https://www.wow-petopia.com/",
+      "category": "guide"
+    },
+    {
+      "id": 12,
+      "name": "와우 인벤",
+      "description": "한국 최대 와우 커뮤니티",
+      "icon": "/images/sites/inven.png",
+      "url": "https://wow.inven.co.kr/",
+      "category": "community"
+    },
+    {
+      "id": 13,
+      "name": "포션",
+      "description": "WoW 공대 정보 및 길드 활동을 공유하는 한국 커뮤니티 사이트",
+      "icon": "/images/sites/potion.png",
+      "url": "https://potion.imweb.me/",
+      "category": "community"
     }
-  ]
+  ],
+  "discords": [
+    {
+      "id": 1,
+      "class": "Death Knight",
+      "name": "Acherus",
+      "description": "데스나이트 클래스 디스코드",
+      "icon": "/images/classes/deathknight.png",
+      "url": "https://discord.gg/acherus"
+    },
+    {
+      "id": 2,
+      "class": "Druid",
+      "name": "Dreamgrove",
+      "description": "드루이드 클래스 디스코드",
+      "icon": "/images/classes/druid.png",
+      "url": "https://discord.gg/dreamgrove"
+    },
+    {
+      "id": 3,
+      "class": "Hunter",
+      "name": "Trueshot Lodge",
+      "description": "사냥꾼 클래스 디스코드",
+      "icon": "/images/classes/hunter.png",
+      "url": "https://discord.gg/Trueshot"
+    },
+    {
+      "id": 4,
+      "class": "Mage",
+      "name": "Altered Time",
+      "description": "마법사 클래스 디스코드",
+      "icon": "/images/classes/mage.png",
+      "url": "https://discord.gg/makGfZA"
+    },
+    {
+      "id": 5,
+      "class": "Monk",
+      "name": "Peak of Serenity",
+      "description": "수도사 클래스 디스코드",
+      "icon": "/images/classes/monk.png",
+      "url": "http://discord.gg/peakofserenity"
+    },
+    {
+      "id": 6,
+      "class": "Paladin",
+      "name": "Hammer of Wrath",
+      "description": "성기사 클래스 디스코드",
+      "icon": "/images/classes/paladin.png",
+      "url": "https://discord.gg/HammerOfWrath"
+    },
+    {
+      "id": 7,
+      "class": "Priest",
+      "name": "Warcraft Priests",
+      "description": "사제 클래스 디스코드",
+      "icon": "/images/classes/priest.png",
+      "url": "https://discord.gg/WarcraftPriests"
+    },
+    {
+      "id": 8,
+      "class": "Rogue",
+      "name": "Ravenholdt",
+      "description": "도적 클래스 디스코드",
+      "icon": "/images/classes/rogue.png",
+      "url": "https://discord.gg/Ravenholdt"
+    },
+    {
+      "id": 9,
+      "class": "Shaman",
+      "name": "Earthshrine",
+      "description": "주술사 클래스 디스코드",
+      "icon": "/images/classes/shaman.png",
+      "url": "https://discord.gg/earthshrine"
+    },
+    {
+      "id": 10,
+      "class": "Shaman",
+      "name": "Ancestral Guidance (복술)",
+      "description": "복원 주술사 클래스 디스코드",
+      "icon": "/images/classes/shaman.png",
+      "url": "https://discord.gg/AcTek6e"
+    },
+    {
+      "id": 11,
+      "class": "Warlock",
+      "name": "Council of the Black Harvest",
+      "description": "흑마법사 클래스 디스코드",
+      "icon": "/images/classes/warlock.png",
+      "url": "https://discord.gg/BlackHarvest"
+    },
+    {
+      "id": 12,
+      "class": "Warrior",
+      "name": "Skyhold",
+      "description": "전사 클래스 디스코드",
+      "icon": "/images/classes/warrior.png",
+      "url": "https://discord.gg/Skyhold"
+    },
+    {
+      "id": 13,
+      "class": "Evoker",
+      "name": "Wyrmrest Temple",
+      "description": "기원사 클래스 디스코드",
+      "icon": "/images/classes/evoker.png",
+      "url": "https://discord.gg/evoker"
+    },
+    {
+      "id": 14,
+      "class": "Demon Hunter",
+      "name": "The Fel Hammer",
+      "description": "악마사냥꾼 클래스 디스코드",
+      "icon": "/images/classes/demonhunter.png",
+      "url": "https://discord.gg/felhammer"
+    }
+
+ ]
 }
