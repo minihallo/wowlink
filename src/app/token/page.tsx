@@ -1,5 +1,13 @@
 import { getWoWToken } from "@/lib/api/blizzard";
 import Image from "next/image";
+import { Black_Han_Sans } from 'next/font/google'
+import Link from 'next/link';
+
+const blackHanSans = Black_Han_Sans({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-black-han-sans',
+})
 
 export default async function TokenPage() {
   const tokenPrice = await getWoWToken();
@@ -15,7 +23,9 @@ export default async function TokenPage() {
           className="object-contain"
         />
       </div>
-      <h1 className="text-2xl font-bold">현재 WoW 토큰 시세</h1>
+      <h1 className={`text-2xl md:text-3xl lg:text-4xl ${blackHanSans.className}`}>
+        현재 <span className="text-yellow-500">WoW 토큰</span> 시세
+      </h1>
       <p className="text-xl">{tokenPrice.toLocaleString()} 골드</p>
     </div>
   );

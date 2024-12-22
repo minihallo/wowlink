@@ -13,9 +13,23 @@ import {
     SheetFooter,
     SheetTrigger,
 } from '@/components/ui/sheet'
+import { Poppins, Black_Han_Sans } from 'next/font/google'
+import Image from "next/image";
+
+const blackHanSans = Black_Han_Sans({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-black-han-sans',
+})
+
+const poppins = Poppins({
+  weight: ['600', '700'],
+  subsets: ['latin'],
+  variable: '--font-poppins',
+})
 
 const navigation = [
-    { title: '퀵링크', url: '/q' },
+    { title: '퀵링크', url: '/quickLink' },
     { title: '직업별 디스코드', url: '/discord' },
     { title: '토큰 시세', url: '/token' },
     // { title: '스트리머', url: '/s' },
@@ -29,15 +43,26 @@ export function Navigation() {
     
     return (
       <nav className="flex w-full">
-        {/* 로고나 사이트 제목이 필요하다면 여기에 */}
-        <div className="flex-shrink-0">
-          <Link href="/" className="text-xl font-semibold">
-            Title
+        <div className="flex-shrink-0 flex items-center gap-2">
+          <Image
+            src="/images/assets/wowtoken.png"
+            alt="WoW 토큰"
+            width={36}
+            height={36}
+            className="object-contain"
+          />
+          <Link
+            href="/"
+            className="text-2xl font-black tracking-tight hover:text-primary/90 transition-colors font-black-han-sans"
+          >
+            WoWLink
           </Link>
         </div>
 
         {/* PC 네비게이션 */}
-        <div id="pc" className="hidden md:flex md:items-center md:gap-3 ml-auto">
+        <div className="flex items-center gap-4 ml-auto">
+
+        <div id="pc" className="hidden md:flex md:items-center md:gap-3">
           {navigation.map((item, index) => (
             <Link 
               key={index} 
@@ -48,14 +73,12 @@ export function Navigation() {
             </Link>
           ))}
         </div>
-  
-        {/* 테마 스위치와 모바일 메뉴 */}
-        <div className="flex items-center space-x-4 ml-auto">
+
+        {/* Mobile 네비게이션 */}
+        <div className="flex items-center gap-4">
           <div className="switch">
             <ThemeSwitch />
           </div>
-    
-          {/* 모바일 메뉴 */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger className="md:hidden">
               <Menu className="h-6 w-6 ml-auto" />
@@ -80,23 +103,24 @@ export function Navigation() {
               <SheetFooter className="absolute bottom-4 left-4 right-4 text-xs text-gray-500">
                 <div className="flex justify-center space-x-4">
                   <Link
-                    href="https://tally.so/r/31E7Gp"
+                    href="https://tally.so/r/3jG8z4"
                     className="hover:underline"
                     target="_blank"
                   >
                     문의 및 건의사항
                   </Link>
                   <Link
-                    href="mailto:i@poe.gy"
+                    href="mailto:loitermin@gmail.com"
                     className="hover:underline"
                     target="_blank"
                   >
-                    i@poe.gy
+                    메일 보내기
                   </Link>
                 </div>
               </SheetFooter>
             </SheetContent>
           </Sheet>
+        </div>
         </div>
       </nav>
     )

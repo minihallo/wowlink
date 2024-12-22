@@ -6,11 +6,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { Site } from "@/types/site";
 import { useState, useEffect } from "react";
-import { getSites } from "@/lib/db/getSites";
 
 interface HomeProps {
   initialSites: Site[];
 }
+
+const categoryMapping: { [key: string]: string } = {
+  guide: '가이드',
+  tool: '도구',
+  addon: '애드온',
+  community: '커뮤니티'
+};
 
 export default function FilteredSites({ initialSites }: HomeProps) {
   const [sites, setSites] = useState<Site[]>(initialSites || []);
@@ -58,7 +64,16 @@ export default function FilteredSites({ initialSites }: HomeProps) {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-3 mt-6">
+        <Button
+          variant={!showFavorites && !selectedCategory ? "default" : "outline"}
+          onClick={() => {
+            setSelectedCategory(null);
+            setShowFavorites(false);
+          }}
+        >
+          전체
+        </Button>
         <Button
           variant={showFavorites ? "default" : "outline"}
           onClick={() => {
@@ -79,7 +94,7 @@ export default function FilteredSites({ initialSites }: HomeProps) {
               setShowFavorites(false);
             }}
           >
-            {category}
+            {categoryMapping[category] || category}
           </Button>
         ))}
       </div>

@@ -1,6 +1,7 @@
 import { ThemeProvider } from 'next-themes'
 import { Navigation } from '../components/layout/Navigation'
 import './globals.css'
+import { Footer } from '@/components/layout/Footer'
 
 export default function RootLayout({
   children,
@@ -15,14 +16,21 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <header className="sticky top-0 z-50 w-full border-b">
-            <div className="max-w-3xl mx-auto px-4">
-              <div className="flex h-14 items-center">
-                <Navigation />
+          <div className="flex flex-col min-h-screen">
+            <header className="sticky top-0 z-50 w-full border-b bg-background/60 backdrop-blur">
+              <div className="max-w-7xl mx-auto px-4">
+                <div className="flex h-14 items-center col-span-12 xl:col-span-8">
+                  <Navigation />
+                </div>
               </div>
+            </header>
+            <div className="max-w-7xl mx-auto px-4">
+                <main className="col-span-12 xl:col-span-8 p-0">
+                  {children}
+                </main>
             </div>
-          </header>
-          <main className="container mx-auto px-4">{children}</main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>

@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "와우 헤드",
-      "description": "Wow에 대한 가장 큰 정보 사이트. 뉴스, 직업, 장비, 전문 기술, 공격대, 형상변환 등에 대한 정보를 제공",
+      "description": "뉴스, 직업, 장비, 전문 기술, 공격대, 형상변환 등에 대한 정보 제공",
       "icon": "/images/sites/wowhead.png",
       "url": "https://www.wowhead.com/",
       "category": "guide"
@@ -14,6 +14,14 @@
       "description": "전투 분석을 제공하는 웹 사이트",
       "icon": "/images/sites/wcl.png",
       "url": "https://ko.warcraftlogs.com/",
+      "category": "tool"
+    },
+    {
+      "id": 14,
+      "name": "레이드봇",
+      "description": "SimulationCraft와 연동하여 현재 착용 장비나 잠재적 업그레이드 장비의 성능을 비교하고 분석",
+      "icon": "/images/sites/raidbot.png",
+      "url": "https://potion.imweb.me/",
       "category": "tool"
     },
     {
@@ -104,6 +112,7 @@
       "url": "https://potion.imweb.me/",
       "category": "community"
     }
+
   ],
   "discords": [
     {
