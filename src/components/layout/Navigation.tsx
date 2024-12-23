@@ -32,8 +32,8 @@ const navigation = [
     { title: '퀵링크', url: '/quickLink' },
     { title: '직업별 디스코드', url: '/discord' },
     { title: '토큰 시세', url: '/token' },
-    // { title: '스트리머', url: '/s' },
-    // { title: '업데이트', url: '/update' },
+    { title: '스트리머', url: '/streamer' },
+    { title: '팁', url: '/tip' },
     // { title: '후원하기', url: '/donate' },
 ]
   

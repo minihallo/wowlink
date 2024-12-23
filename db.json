@@ -228,5 +228,59 @@
       "url": "https://discord.gg/felhammer"
     }
 
- ]
+  ],
+  "streamers": [
+    {
+      "name": "귀마개",
+      "url": "https://chzzk.naver.com/220f0c301e07f2be948982e56aa23cbd",
+      "category": "korean"
+    },
+    {
+      "name": "무굴",
+      "url": "https://chzzk.naver.com/7fc78fa17c3ef69865c6e25c2b01d705",
+      "category": "korean"
+    },
+    {
+      "name": "tori",
+      "url": "https://chzzk.naver.com/ca6489c1bb63c41ea680d6520d9aaf94",
+      "category": "korean"
+    },
+    {
+      "name": "Pikabooirl",
+      "url": "https://www.twitch.tv/pikabooirl",
+      "category": "global"
+    },
+    {
+      "name": "GingiTV",
+      "url": "https://www.twitch.tv/gingitv",
+      "category": "global"
+    }
+  ],
+  "tips": [
+    {
+      "title": "Viserio 내부전쟁 1시즌 네룹아르 궁전 공격대 준비 도우미 한글화",
+      "url": "https://www.inven.co.kr/board/wow/2081/218485?my=con",
+      "category": "tww"
+    },
+    {
+      "title": "주간 전문기술 지식 추적 위크오라 (한글화)",
+      "url": "https://www.inven.co.kr/board/wow/4739/172892?my=con",
+      "category": "tww"
+    },
+    {
+      "title": "34칸 가방 3개 얻는법",
+      "url": "https://www.inven.co.kr/board/wow/17/39374?my=con&category=_%EA%B8%B0%ED%83%80",
+      "category": "tww"
+    },
+    {
+      "title": "네룹아르 궁전 공략",
+      "url": "https://www.inven.co.kr/board/wow/2081/218221?my=con",
+      "category": "tww"
+    },
+    {
+      "title": "키르케의 반지 버프 추적 위크오라",
+      "url": "https://www.inven.co.kr/board/wow/17/39969?category=_%EA%B8%B0%ED%83%80",
+      "category": "tww"
+    }
+  ]
 }
