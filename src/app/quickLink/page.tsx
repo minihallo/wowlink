@@ -12,6 +12,7 @@ const blackHanSans = Black_Han_Sans({
 export default async function QuickLinkPage() {
   const sites = await getSites();
 
+  
   return (
     <div>
       <div className="text-center space-y-4 my-8">
