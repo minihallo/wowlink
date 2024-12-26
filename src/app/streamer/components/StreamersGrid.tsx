@@ -176,6 +176,7 @@ const StreamerGrid = ({ streamers, twitchClientId, twitchClientSecret, chzzkAuth
                     <Image
                       src={streamer.profileImageUrl || '/images/assets/wowtoken.png'}
                       alt={`${streamer.name} profile`}
+                      style={{ maxWidth: '40px', maxHeight: '40px' }}
                       width={40}
                       height={40}
                       className="rounded-full"
