@@ -23,6 +23,15 @@
           "uriFormat": "%s",
           "action": "debugWithChrome"
         }
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Debug Profile Update Script",
+        "skipFiles": ["<node_internals>/**"],
+        "program": "${workspaceFolder}/src/scripts/updateProfileImages.ts",
+        "runtimeExecutable": "tsx",
+        "outFiles": ["${workspaceFolder}/**/*.js"]
       }
     ]
   }

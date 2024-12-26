@@ -1,5 +1,5 @@
 import { Black_Han_Sans } from 'next/font/google'
-import StreamerGrid from "./components/StreamerGrid";
+import StreamerGrid from "./components/StreamersGrid";
 import { getStreamers } from "@/lib/db/getData";
 
 const blackHanSans = Black_Han_Sans({
@@ -9,8 +9,8 @@ const blackHanSans = Black_Han_Sans({
 })
 
 export default async function StreamerPage() {
+  let streamers = await getStreamers();
 
-  const streamers = getStreamers();
   return (
     <div>
       <div className={`flex flex-col items-center gap-4 py-8`}>
@@ -18,7 +18,13 @@ export default async function StreamerPage() {
           월드 오브 워크래프트 <span className="text-yellow-500">스트리머</span>
         </h1>
       </div>
-      <StreamerGrid streamers={streamers} />
+      <StreamerGrid 
+        streamers={streamers}
+        twitchClientId={process.env.TWITCH_CLIENT_ID!}
+        twitchClientSecret={process.env.TWITCH_CLIENT_SECRET!}
+        chzzkAuth={process.env.NID_AUT!}
+        chzzkSession={process.env.NID_SES!}
+      />
     </div>
   );
 }

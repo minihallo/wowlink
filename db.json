@@ -233,54 +233,93 @@
     {
       "name": "귀마개",
       "url": "https://chzzk.naver.com/220f0c301e07f2be948982e56aa23cbd",
-      "category": "korean"
+      "category": "korean",
+      "platform": "chzzk"
     },
     {
       "name": "무굴",
       "url": "https://chzzk.naver.com/7fc78fa17c3ef69865c6e25c2b01d705",
-      "category": "korean"
+      "category": "korean",
+      "platform": "chzzk"
+    },
+    {
+      "name": "태상이",
+      "url": "https://chzzk.naver.com/d028a08df38e91ba56163fc4f428814e",
+      "category": "korean",
+      "platform": "chzzk"
+    },
+    {
+      "name": "효리",
+      "url": "https://chzzk.naver.com/b948a2bf527ad3204d8006fac4368454",
+      "category": "korean",
+      "platform": "chzzk"
     },
     {
       "name": "tori",
       "url": "https://chzzk.naver.com/ca6489c1bb63c41ea680d6520d9aaf94",
-      "category": "korean"
+      "category": "korean",
+      "platform": "chzzk"
+    },
+    {
+      "name": "익금산입유보",
+      "url": "https://chzzk.naver.com/db35e3ccf12a313cc1c7cfa322084397",
+      "category": "korean",
+      "platform": "chzzk"
+    },
+    {
+      "name": "에셀님",
+      "url": "https://chzzk.naver.com/b4abcbc1fae2c89b11f54540e76a0a41",
+      "category": "korean",
+      "platform": "chzzk"
     },
     {
       "name": "Pikabooirl",
       "url": "https://www.twitch.tv/pikabooirl",
-      "category": "global"
+      "category": "global",
+      "platform": "twitch"
     },
     {
       "name": "GingiTV",
       "url": "https://www.twitch.tv/gingitv",
-      "category": "global"
+      "category": "global",
+      "platform": "twitch"
     }
   ],
   "tips": [
     {
       "title": "Viserio 내부전쟁 1시즌 네룹아르 궁전 공격대 준비 도우미 한글화",
       "url": "https://www.inven.co.kr/board/wow/2081/218485?my=con",
-      "category": "tww"
+      "category": "tww",
+      "tags": ["레이드"],
+      "platform": "inven"
     },
     {
       "title": "주간 전문기술 지식 추적 위크오라 (한글화)",
       "url": "https://www.inven.co.kr/board/wow/4739/172892?my=con",
-      "category": "tww"
+      "category": "tww",
+      "tags": ["전문기술"],
+      "platform": "inven"
     },
     {
       "title": "34칸 가방 3개 얻는법",
       "url": "https://www.inven.co.kr/board/wow/17/39374?my=con&category=_%EA%B8%B0%ED%83%80",
-      "category": "tww"
+      "category": "tww",
+      "tags": ["생활"],
+      "platform": "inven"
     },
     {
       "title": "네룹아르 궁전 공략",
       "url": "https://www.inven.co.kr/board/wow/2081/218221?my=con",
-      "category": "tww"
+      "category": "tww",
+      "tags": ["레이드"],
+      "platform": "inven"
     },
     {
       "title": "키르케의 반지 버프 추적 위크오라",
       "url": "https://www.inven.co.kr/board/wow/17/39969?category=_%EA%B8%B0%ED%83%80",
-      "category": "tww"
+      "category": "tww",
+      "tags": ["장비"],
+      "platform": "inven"
     }
   ]
 }
