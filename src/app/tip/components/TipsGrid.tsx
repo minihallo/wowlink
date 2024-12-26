@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { Tip } from '@/types/tip';
 
 interface TipsGridProps {
   tips: Tip[];
@@ -23,7 +24,7 @@ const TipsGrid = ({ tips }: TipsGridProps) => {
 
   const filteredTips = tips.filter(tip => {
     const matchesSearch = tip.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      tip.tags?.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+      tip.tags?.some((tag: string) => tag.toLowerCase().includes(searchQuery.toLowerCase()));
     
     const matchesTag = selectedTag ? tip.tags?.includes(selectedTag) : true;
 
@@ -67,7 +68,7 @@ const TipsGrid = ({ tips }: TipsGridProps) => {
                     </div>
                     {tip.tags && tip.tags.length > 0 && (
                       <div className="flex flex-wrap gap-2">
-                        {tip.tags.map((tag) => (
+                        {tip.tags.map((tag: string) => (
                           <Badge 
                             key={tag} 
                             variant={selectedTag === tag ? "default" : "secondary"}

@@ -1,8 +1,10 @@
 // src/scripts/syncDatabase.ts
 import { MongoClient } from 'mongodb';
 import fs from 'fs/promises';
+import { watch } from 'fs';  // fs/promises가 아닌 fs에서 import
 import path from 'path';
 import dotenv from 'dotenv';
+import { PathLike } from 'fs';
 
 dotenv.config({ path: '.env.local' });
 
@@ -46,20 +48,20 @@ async function syncDatabase() {
 
 // 파일 변경 감지 기능
 const watchDatabase = async () => {
-  const DB_PATH = path.join(process.cwd(), 'src/db.json');
+    const DB_PATH = path.join(process.cwd(), 'src/db.json') as PathLike;
+    
+    console.log('Watching for file changes...');
+    
+    watch(DB_PATH, (eventType: string, _filename: string | null) => {
+        if (eventType === 'change') {
+            console.log('Change detected in db.json');
+            syncDatabase();
+        }
+    });
   
-  console.log('Watching for file changes...');
-  
-  fs.watch(DB_PATH, (eventType) => {
-    if (eventType === 'change') {
-      console.log('Change detected in db.json');
-      syncDatabase();
-    }
-  });
-
-  // 초기 동기화
-  await syncDatabase();
-};
+    // 초기 동기화
+    await syncDatabase();
+  };
 
 // 스크립트 실행
 if (process.argv.includes('--watch')) {
