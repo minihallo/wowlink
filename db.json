@@ -249,14 +249,44 @@
       "platform": "chzzk"
     },
     {
+      "name": "카게후미",
+      "url": "https://chzzk.naver.com/5fd31d9196044bcd63dba856c955682b",
+      "category": "korean",
+      "platform": "chzzk"
+    },
+    {
+      "name": "젠징이숲",
+      "url": "https://chzzk.naver.com/c8fc5d915122865ea25ca07e36f8e3f8",
+      "category": "korean",
+      "platform": "chzzk"
+    },
+    {
       "name": "효리",
       "url": "https://chzzk.naver.com/b948a2bf527ad3204d8006fac4368454",
       "category": "korean",
       "platform": "chzzk"
     },
     {
+      "name": "트로이어드",
+      "url": "https://chzzk.naver.com/d206ca3f4cc4edba04966cb8d24c1360",
+      "category": "korean",
+      "platform": "chzzk"
+    },
+    {
       "name": "tori",
       "url": "https://chzzk.naver.com/ca6489c1bb63c41ea680d6520d9aaf94",
+      "category": "korean",
+      "platform": "chzzk"
+    },
+    {
+      "name": "별빛 마녀",
+      "url": "https://chzzk.naver.com/065b10e1779b59a3c4c049bc67f012df",
+      "category": "korean",
+      "platform": "chzzk"
+    },
+    {
+      "name": "판다스틱",
+      "url": "https://chzzk.naver.com/44fe3916d08bdb1cd58b788d92b8f265",
       "category": "korean",
       "platform": "chzzk"
     },
@@ -281,6 +311,48 @@
     {
       "name": "GingiTV",
       "url": "https://www.twitch.tv/gingitv",
+      "category": "global",
+      "platform": "twitch"
+    },
+    {
+      "name": "fandy",
+      "url": "https://www.twitch.tv/fandy",
+      "category": "global",
+      "platform": "twitch"
+    },
+    {
+      "name": "cdewx",
+      "url": "https://www.twitch.tv/cdewx",
+      "category": "global",
+      "platform": "twitch"
+    },
+    {
+      "name": "sequisha",
+      "url": "https://www.twitch.tv/sequisha",
+      "category": "global",
+      "platform": "twitch"
+    },
+    {
+      "name": "alfie",
+      "url": "https://www.twitch.tv/alfie",
+      "category": "global",
+      "platform": "twitch"
+    },
+    {
+      "name": "graycen",
+      "url": "https://www.twitch.tv/graycen",
+      "category": "global",
+      "platform": "twitch"
+    },
+    {
+      "name": "waolol1",
+      "url": "https://www.twitch.tv/waolol1",
+      "category": "global",
+      "platform": "twitch"
+    },
+    {
+      "name": "summit1g",
+      "url": "https://www.twitch.tv/summit1g",
       "category": "global",
       "platform": "twitch"
     }
