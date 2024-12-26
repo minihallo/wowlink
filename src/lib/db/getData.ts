@@ -40,3 +40,9 @@ export const getSites = () => getData<Site>('sites')
 
 import { Discord } from "@/types/discord"
 export const getDiscords = () => getData<Discord>('discords')
+
+import { Streamer } from "@/types/streamer"
+export const getStreamers = () => getData<Streamer>('streamers')
+
+import { Tip } from "@/types/tip"
+export const getTips = () => getData<Tip>('tips')
