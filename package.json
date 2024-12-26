@@ -9,7 +9,9 @@
     "lint": "next lint",
     "next-id": "node --loader ts-node/esm scripts/getNextId.ts",
     "update-profiles": "tsx ./src/scripts/updateProfileImages.ts",
-    "update-profiles:debug": "tsx --inspect-brk src/scripts/updateProfileImages.ts"
+    "update-profiles:debug": "tsx --inspect-brk src/scripts/updateProfileImages.ts",
+    "sync-db": "tsx ./src/scripts/syncDatabase.ts",
+    "sync-db:debug": "tsx --inspect-brk ./src/scripts/syncDatabase.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.4",

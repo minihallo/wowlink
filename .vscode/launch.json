@@ -32,6 +32,15 @@
         "program": "${workspaceFolder}/src/scripts/updateProfileImages.ts",
         "runtimeExecutable": "tsx",
         "outFiles": ["${workspaceFolder}/**/*.js"]
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Debug Sync Database Script",
+        "skipFiles": ["<node_internals>/**"],
+        "program": "${workspaceFolder}/src/scripts/syncDatabase.ts",
+        "runtimeExecutable": "tsx",
+        "outFiles": ["${workspaceFolder}/**/*.js"]
       }
     ]
   }

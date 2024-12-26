@@ -287,17 +287,59 @@
   ],
   "tips": [
     {
+      "title": "11.0.7 패치 가이드",
+      "url": "https://potion.imweb.me/wow_info/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=133297110&t=board",
+      "category": "tww",
+      "tags": ["가이드"],
+      "platform": "potion"
+    },
+    {
+      "title": "키르케의 관 645 업글 및 바다살이의 축복 퀘스트 라인",
+      "url": "https://potion.imweb.me/wow_info/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=136737145&t=board",
+      "category": "tww",
+      "tags": ["가이드", "키르케"],
+      "platform": "potion"
+    },
+    {
+      "title": "와우헤드발 전문화별 키르케의 관 베스트 세팅",
+      "url": "https://potion.imweb.me/wow_info/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=135657819&t=board",
+      "category": "tww",
+      "tags": ["가이드"],
+      "platform": "potion"
+    },
+    {
+      "title": "렉을 유발하는 애드온/위크오라를 찾아보자",
+      "url": "https://www.inven.co.kr/board/wow/17/39955?my=chuchu",
+      "category": "tww",
+      "tags": ["정보", "위크오라", "애드온"],
+      "platform": "inven"
+    },
+    {
+      "title": "내부전쟁 신규 8던전 & 1시즌 4던전 및 네룹아르 궁전 레이드 공략",
+      "url": "https://www.inven.co.kr/board/wow/2081/218471?my=con",
+      "category": "tww",
+      "tags": ["레이드", "공략"],
+      "platform": "inven"
+    },
+    {
       "title": "Viserio 내부전쟁 1시즌 네룹아르 궁전 공격대 준비 도우미 한글화",
       "url": "https://www.inven.co.kr/board/wow/2081/218485?my=con",
       "category": "tww",
-      "tags": ["레이드"],
+      "tags": ["레이드", "위크오라"],
+      "platform": "inven"
+    },
+    {
+      "title": "와켓몬과 와켓몬 대전에 대해서 알아보자(입문편)",
+      "url": "https://www.inven.co.kr/board/wow/17/39920?my=chuchu",
+      "category": "tww",
+      "tags": ["정보", "와켓몬"],
       "platform": "inven"
     },
     {
       "title": "주간 전문기술 지식 추적 위크오라 (한글화)",
       "url": "https://www.inven.co.kr/board/wow/4739/172892?my=con",
       "category": "tww",
-      "tags": ["전문기술"],
+      "tags": ["전문기술", "위크오라"],
       "platform": "inven"
     },
     {
@@ -311,14 +353,14 @@
       "title": "네룹아르 궁전 공략",
       "url": "https://www.inven.co.kr/board/wow/2081/218221?my=con",
       "category": "tww",
-      "tags": ["레이드"],
+      "tags": ["레이드", "공략"],
       "platform": "inven"
     },
     {
       "title": "키르케의 반지 버프 추적 위크오라",
       "url": "https://www.inven.co.kr/board/wow/17/39969?category=_%EA%B8%B0%ED%83%80",
       "category": "tww",
-      "tags": ["장비"],
+      "tags": ["장비", "키르케"],
       "platform": "inven"
     }
   ]

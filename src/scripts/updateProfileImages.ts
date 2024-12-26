@@ -40,8 +40,8 @@ const updateTwitchProfileImages = async (client: MongoClient) => {
     const db = client.db("wowlink");
     const streamersCollection = db.collection('streamers');
 
-    const streamersData = await streamersCollection.findOne({});
-    const twitchStreamers: Streamer[] = streamersData?.streamers.filter((streamer: Streamer) => streamer.platform === 'twitch');
+    const twitchStreamers = await streamersCollection.find({ platform: 'twitch' }).toArray();
+
     console.log('Found twitch streamers:', twitchStreamers);
 
     const response = await fetch('https://id.twitch.tv/oauth2/token', {
@@ -76,11 +76,11 @@ const updateTwitchProfileImages = async (client: MongoClient) => {
         
         // MongoDB 업데이트
         await streamersCollection.updateOne(
-          { "streamers.name": streamer.name },
+          { name: streamer.name },
           { 
             $set: { 
-              "streamers.$.profileImageUrl": profileImageUrl,
-              "streamers.$.lastUpdated": new Date()
+              profileImageUrl: profileImageUrl,
+              lastUpdated: new Date()
             } 
           }
         );
@@ -107,8 +107,8 @@ const updateChzzkProfileImages = async (client: MongoClient) => {
     
     const chzzkClient = new ChzzkClient(options);
 
-    const data = await streamersCollection.findOne({});
-    const chzzkStreamers: Streamer[] = data?.streamers.filter((streamer: Streamer) => streamer.platform === 'chzzk');
+    const chzzkStreamers = await streamersCollection.find({ platform: 'chzzk' }).toArray();
+    
     console.log('Found chzzk streamers:', chzzkStreamers);
 
     // 각 스트리머의 프로필 이미지 업데이트
@@ -120,10 +120,11 @@ const updateChzzkProfileImages = async (client: MongoClient) => {
           const profileImageUrl = searchResult.channels[0].channelImageUrl;
           
           await streamersCollection.updateOne(
-            { "streamers.name": streamer.name },
+            { name: streamer.name },
             { 
               $set: { 
-                "streamers.$.profileImageUrl": profileImageUrl
+                profileImageUrl: profileImageUrl,
+                lastUpdated: new Date()
               } 
             }
           );

@@ -25,10 +25,10 @@ export async function getData<T>(collection: string): Promise<T[]> {
     
     const data = await db
       .collection(collection)
-      .findOne({});
+      .find({})
+      .toArray();
     
-    return data?.[collection] as T[] || []
-
+    return JSON.parse(JSON.stringify(data)) as T[];
   } catch (e) {
     console.error(`Failed to fetch from ${collection}:`, e)
     throw new Error(`Failed to fetch from ${collection}`)
