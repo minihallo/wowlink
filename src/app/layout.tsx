@@ -2,6 +2,7 @@ import { ThemeProvider } from 'next-themes'
 import { Navigation } from '../components/layout/Navigation'
 import './globals.css'
 import { Footer } from '@/components/layout/Footer'
+import { Analytics } from "@vercel/analytics/react"
 
 export default function RootLayout({
   children,
