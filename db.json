@@ -116,7 +116,7 @@
       "id": 15,
       "name": "WOWTAT",
       "description": "레이드 및 쐐기 2차 스탯 통계를 제공하는 사이트",
-      "icon": "/images/sites/potion.png",
+      "icon": "/images/sites/wowtat.png",
       "url": "https://wowtat.com",
       "category": "community"
     }
