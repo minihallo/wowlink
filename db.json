@@ -25,19 +25,35 @@
       "category": "tool"
     },
     {
-      "id": 3,
-      "name": "Archon",
-      "description": "역할군별 메타 빌드, 장비와 관련된 분석 정보 제공",
-      "icon": "/images/sites/archon.png",
-      "url": "https://www.archon.gg/wow",
-      "category": "tool"
-    },
-    {
       "id": 4,
       "name": "Raider",
       "description": "캐릭터 및 길드 프로필, Mythic+ 점수, 공격대 진행 상황 등의 정보 제공",
       "icon": "/images/sites/raider.png",
       "url": "https://raider.io",
+      "category": "tool"
+    },
+    {
+      "id": 10,
+      "name": "Bloodmallet",
+      "description": "각 클래스와 특성별 최적의 장비(주로 장신구), 특성, DPS 시뮬레이션 결과를 제공하는 사이트",
+      "icon": "/images/sites/bloodmallet.png",
+      "url": "https://bloodmallet.com/",
+      "category": "tool"
+    },
+    {
+      "id": 16,
+      "name": "KEYSTONE.GURU",
+      "description": "쐐기 루트를 만들고 공유할 수 있는 사이트",
+      "icon": "/images/sites/keystoneguru.png",
+      "url": "https://keystone.guru/",
+      "category": "tool"
+    },
+    {
+      "id": 3,
+      "name": "Archon",
+      "description": "역할군별 메타 빌드, 장비와 관련된 분석 정보 제공",
+      "icon": "/images/sites/archon.png",
+      "url": "https://www.archon.gg/wow",
       "category": "tool"
     },
     {
@@ -47,14 +63,6 @@
       "icon": "/images/sites/wowanal.png",
       "url": "https://wowanalyzer.com/",
       "category": "tool"
-    },
-    {
-      "id": 6,
-      "name": "Murlok",
-      "description": "직업별 PvP에 대한 가이드 제공",
-      "icon": "/images/sites/murlok.png",
-      "url": "https://murlok.io/",
-      "category": "guide"
     },
     {
       "id": 7,
@@ -73,20 +81,28 @@
       "category": "addon"
     },
     {
+      "id": 17,
+      "name": "WowUp.io",
+      "description": "애드온 관리 프로그램",
+      "icon": "/images/sites/wowup.png",
+      "url": "https://wowup.io/",
+      "category": "tool"
+    },
+    {
+      "id": 6,
+      "name": "Murlok",
+      "description": "직업별 PvP에 대한 가이드 제공",
+      "icon": "/images/sites/murlok.png",
+      "url": "https://murlok.io/",
+      "category": "guide"
+    },
+    {
       "id": 9,
       "name": "WoW Professions",
       "description": "WoW의 모든 전문기술에 대한 상세 가이드와 레벨링 경로를 제공하는 사이트",
       "icon": "/images/sites/profession.png",
       "url": "https://www.wow-professions.com/",
       "category": "guide"
-    },
-    {
-      "id": 10,
-      "name": "Bloodmallet",
-      "description": "각 클래스와 특성별 최적의 장비, 특성, DPS 시뮬레이션 결과를 제공하는 사이트",
-      "icon": "/images/sites/bloodmallet.png",
-      "url": "https://bloodmallet.com/",
-      "category": "tool"
     },
     {
       "id": 11,
@@ -118,9 +134,8 @@
       "description": "레이드 및 쐐기 2차 스탯 통계를 제공하는 사이트",
       "icon": "/images/sites/wowtat.png",
       "url": "https://wowtat.com",
-      "category": "community"
+      "category": "tool"
     }
-
   ],
   "discords": [
     {
