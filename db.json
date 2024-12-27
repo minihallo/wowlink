@@ -21,7 +21,7 @@
       "name": "레이드봇",
       "description": "SimulationCraft와 연동하여 현재 착용 장비나 잠재적 업그레이드 장비의 성능을 비교하고 분석",
       "icon": "/images/sites/raidbot.png",
-      "url": "https://potion.imweb.me/",
+      "url": "https://www.raidbots.com/simbot",
       "category": "tool"
     },
     {
@@ -110,6 +110,14 @@
       "description": "WoW 공대 정보 및 길드 활동을 공유하는 한국 커뮤니티 사이트",
       "icon": "/images/sites/potion.png",
       "url": "https://potion.imweb.me/",
+      "category": "community"
+    },
+    {
+      "id": 15,
+      "name": "WOWTAT",
+      "description": "레이드 및 쐐기 2차 스탯 통계를 제공하는 사이트",
+      "icon": "/images/sites/potion.png",
+      "url": "https://wowtat.com",
       "category": "community"
     }
 
@@ -287,6 +295,12 @@
     {
       "name": "판다스틱",
       "url": "https://chzzk.naver.com/44fe3916d08bdb1cd58b788d92b8f265",
+      "category": "korean",
+      "platform": "chzzk"
+    },
+    {
+      "name": "크랜",
+      "url": "https://chzzk.naver.com/000408038eda5ff54260c2a3b4315e28",
       "category": "korean",
       "platform": "chzzk"
     },
