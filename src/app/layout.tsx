@@ -28,6 +28,7 @@ export default function RootLayout({
             <div className="max-w-7xl mx-auto px-4">
                 <main className="col-span-12 xl:col-span-8 p-0">
                   {children}
+                  <Analytics />
                 </main>
             </div>
             <Footer />
