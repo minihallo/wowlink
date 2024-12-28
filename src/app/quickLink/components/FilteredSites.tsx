@@ -7,8 +7,31 @@ import Link from "next/link";
 import { Site } from "@/types/site";
 import { useState, useEffect } from "react";
 
+import { 
+  DndContext, 
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+  rectSortingStrategy,
+} from '@dnd-kit/sortable';
+
 interface HomeProps {
   initialSites: Site[];
+}
+
+interface SortableCardProps {
+  site: Site;
+  favorites: number[];
+  toggleFavorite: (siteId: number) => void;
 }
 
 const categoryMapping: { [key: string]: string } = {
@@ -18,6 +41,83 @@ const categoryMapping: { [key: string]: string } = {
   community: '커뮤니티'
 };
 
+function SortableCard({ site, favorites, toggleFavorite }: SortableCardProps) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+  } = useSortable({ id: site.id });
+
+  const style = {
+    transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
+    transition,
+    // 드래그 중일 때 시각적 피드백
+    cursor: 'grab',
+    touchAction: 'none', // 터치 디바이스에서 스크롤 대신 드래그 우선
+    userSelect: 'none',  // 텍스트 선택 방지
+  };
+
+  // const style = {
+  //   transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
+  //   transition,
+  // };
+
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // 이벤트 버블링 중지
+    toggleFavorite(site.id);
+  };
+
+  return (
+    <div ref={setNodeRef} style={style} >
+      <Card key={site.id}>
+        <div {...attributes} {...listeners}>
+          <CardHeader className="flex flex-row items-center gap-4 pt-2">
+            <div className="w-12 h-12 relative flex-shrink-0">
+              <Image
+                src={site.icon}
+                alt={`${site.name} 아이콘`}
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div className="flex-1">
+              <CardTitle className="mb-2 text-xl">{site.name}</CardTitle>
+              <CardDescription className="h-9 text-base">{site.description}</CardDescription>
+            </div>
+          </CardHeader>
+        </div>
+        <CardFooter className="pb-4">
+            <Link 
+              href={site.url}
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md text-center"
+              target="_blank"
+              onClick={e => e.stopPropagation()}
+            >
+              방문하기
+            </Link>
+            <div draggable={false}>
+              <Button
+                variant="outline"
+                onClick={handleFavoriteClick}
+                className={`h-10 w-10 ${
+                  favorites.includes(site.id) 
+                    ? "text-yellow-400 border-yellow-400 hover:border-yellow-500 hover:text-yellow-500" 
+                    : "text-gray-400 hover:text-gray-500 hover:border-gray-500"
+                }`}
+              >
+                <span className="text-2xl">★</span>
+              </Button>
+            </div>
+        </CardFooter>
+      </Card>
+    </div>
+  );
+}
+
+
+
 export default function FilteredSites({ initialSites }: HomeProps) {
   const [sites, setSites] = useState<Site[]>(initialSites || []);
   const [categories, setCategories] = useState<string[]>([]);
@@ -26,14 +126,40 @@ export default function FilteredSites({ initialSites }: HomeProps) {
   const [favorites, setFavorites] = useState<number[]>([]);  // site.id들을 저장
   const [isLoading, setIsLoading] = useState(false);
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      // 드래그 시작을 위한 최소 이동 거리 (픽셀)
+      activationConstraint: {
+        distance: 8, // 8px 이상 움직여야 드래그 시작
+      },
+    }),
+    // 키보드 지원 추가
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
   useEffect(() => {
-    // 즐겨찾기만 로드
     const savedFavorites = localStorage.getItem('siteFavorites');
     if (savedFavorites) {
       setFavorites(JSON.parse(savedFavorites));
     }
+
+    // 저장된 순서 불러오기
+    const savedOrder = localStorage.getItem('siteOrder');
+    if (savedOrder && initialSites) {
+      const orderIds = JSON.parse(savedOrder);
+      const orderedSites = orderIds
+        .map((id: number) => initialSites.find(site => site.id === id))
+        .filter(Boolean);
+      
+      const newSites = initialSites.filter(
+        site => !orderIds.includes(site.id)
+      );
+      
+      setSites([...orderedSites, ...newSites]);
+    }
   
-    // initialSites가 있으면 카테고리만 설정
     if (initialSites && initialSites.length > 0) {
       const newCategories = Array.from(new Set(initialSites.map(site => site.category)));
       setCategories(newCategories);
@@ -50,6 +176,23 @@ export default function FilteredSites({ initialSites }: HomeProps) {
     localStorage.setItem('siteFavorites', JSON.stringify(newFavorites));
   };
 
+  function handleDragEnd(event: any) {
+    const {active, over} = event;
+    
+    if (active.id !== over.id) {
+      setSites((items) => {
+        const oldIndex = items.findIndex(item => item.id === active.id);
+        const newIndex = items.findIndex(item => item.id === over.id);
+        const newItems = arrayMove(items, oldIndex, newIndex);
+        
+        // 순서 저장
+        const orderIds = newItems.map(item => item.id);
+        localStorage.setItem('siteOrder', JSON.stringify(orderIds));
+        
+        return newItems;
+      });
+    }
+  }
 
   // 사이트 필터링
   const filteredSites = sites.filter(site => {
@@ -99,6 +242,25 @@ export default function FilteredSites({ initialSites }: HomeProps) {
         ))}
       </div>
 
+      <DndContext 
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext items={filteredSites.map(site => site.id)} strategy={rectSortingStrategy}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredSites.map((site) => (
+              <SortableCard 
+                key={site.id} 
+                site={site} 
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+              />
+            ))}
+          </div>
+        </SortableContext>
+      </DndContext>
+{/*       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredSites.map((site) => (
           <Card key={site.id}>
@@ -138,7 +300,7 @@ export default function FilteredSites({ initialSites }: HomeProps) {
             </CardFooter>
           </Card>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
