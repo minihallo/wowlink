@@ -3,8 +3,8 @@ import Link from 'next/link'
 
 export function Footer() {
   return (
-    <footer className="border-t mt-auto py-6 px-4">
-      <div className="max-w-7xl mx-auto flex flex-col items-center gap-2 text-sm text-muted-foreground">
+    <footer className="border-t mt-auto py-2 px-4">
+      <div className="max-w-7xl mx-auto flex flex-col items-center gap-1 text-sm text-muted-foreground">
         <div className="text-center">
           한국 유저들을 위한 월드 오브 워크래프트 정보 웹사이트 WowLink
         </div>

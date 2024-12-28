@@ -151,6 +151,14 @@
       "icon": "/images/sites/wowtat.png",
       "url": "https://wowtat.com",
       "category": "tool"
+    },
+    {
+      "id": 20,
+      "name": "QE Live",
+      "description": "힐러용 유사 심크",
+      "icon": "/images/sites/qe.jpeg",
+      "url": "https://questionablyepic.com/live/",
+      "category": "tool"
     }
   ],
   "discords": [

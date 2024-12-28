@@ -26,7 +26,7 @@ export default function RootLayout({
               </div>
             </header>
             <div className="max-w-7xl mx-auto px-4">
-                <main className="col-span-12 xl:col-span-8 p-0">
+                <main className="col-span-12 xl:col-span-8 p-0 mb-6">
                   {children}
                   <Analytics />
                 </main>
