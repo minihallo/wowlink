@@ -3,6 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { getDiscords } from "@/lib/db/getData";
 import { Black_Han_Sans } from 'next/font/google'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'WowLink | 디스코드',
+  description: 'WowLink'
+}
 
 const blackHanSans = Black_Han_Sans({
   weight: '400',

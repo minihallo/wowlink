@@ -2,6 +2,12 @@ import { getSites } from "@/lib/db/getData";
 import { Site } from "@/types/site";
 import FilteredSites from "./quickLink/components/FilteredSites";
 import { Black_Han_Sans } from 'next/font/google'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'WowLink',
+  description: 'WowLink'
+}
 
 const blackHanSans = Black_Han_Sans({
   weight: '400',
