@@ -24,7 +24,7 @@ async function syncDatabase() {
     const db = client.db('wowlink');
 
     // 각 컬렉션 동기화
-    const collections = ['sites'];
+    const collections = ['sites', 'discords', 'streamers', 'tips'];
 
     for (const collectionName of collections) {
       const collection = db.collection(collectionName);
