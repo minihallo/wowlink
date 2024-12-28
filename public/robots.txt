@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://wowlink.me
+
+# Sitemaps
+Sitemap: https://wowlink.me/sitemap.xml

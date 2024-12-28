@@ -44,18 +44,11 @@ export function Navigation() {
     return (
       <nav className="flex w-full">
         <div className="flex-shrink-0 flex items-center gap-2">
-          <Image
-            src="/images/assets/wowtoken.png"
-            alt="WoW 토큰"
-            width={36}
-            height={36}
-            className="object-contain"
-          />
           <Link
             href="/"
-            className="text-2xl font-black tracking-tight hover:text-primary/90 transition-colors font-black-han-sans"
+            className="ml-1 text-2xl font-black tracking-tight hover:text-primary/90 transition-colors font-black-han-sans"
           >
-            WoWLink
+            WoW<span className="text-yellow-500">Link</span>
           </Link>
         </div>
 

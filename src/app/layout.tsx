@@ -14,6 +14,11 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+        <meta property="og:title" content="WowLink"/>
+        <meta property="og:description" content="한국 유저들을 위한 와우 큐레이션 사이트"/>
+        <meta property="og:image" content="https://wowlink.me/images/assets/wl.png"/>
+        <meta property="og:url" content="https://wowlink.me"/>
       </head>
       <body suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
