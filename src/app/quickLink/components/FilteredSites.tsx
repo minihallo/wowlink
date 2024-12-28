@@ -102,7 +102,7 @@ export default function FilteredSites({ initialSites }: HomeProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredSites.map((site) => (
           <Card key={site.id}>
-            <CardHeader className="flex flex-row items-center gap-4">
+            <CardHeader className="flex flex-row items-center gap-4 pt-2 pb-2">
               <div className="w-12 h-12 relative flex-shrink-0">
                 <Image
                   src={site.icon}
@@ -112,11 +112,11 @@ export default function FilteredSites({ initialSites }: HomeProps) {
                 />
               </div>
               <div className="flex-1">
-                <CardTitle className="mb-2">{site.name}</CardTitle>
-                <CardDescription className="h-9">{site.description}</CardDescription>
+                <CardTitle className="mb-2 text-xl">{site.name}</CardTitle>
+                <CardDescription className="min-h-9 text-base">{site.description}</CardDescription>
               </div>
             </CardHeader>
-            <CardFooter className="mt-2">
+            <CardFooter className="pb-2">
               <Link 
                 href={site.url}
                 className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md text-center"
