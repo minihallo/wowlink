@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { Site } from "@/types/site";
-import { useState, useEffect } from "react";
+import { useState, useEffect, CSSProperties } from "react";
 
 import { 
   DndContext, 
@@ -50,7 +50,7 @@ function SortableCard({ site, favorites, toggleFavorite }: SortableCardProps) {
     transition,
   } = useSortable({ id: site.id });
 
-  const style = {
+  const transformStyle: CSSProperties  = {
     transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
     transition,
     // 드래그 중일 때 시각적 피드백
@@ -70,7 +70,7 @@ function SortableCard({ site, favorites, toggleFavorite }: SortableCardProps) {
   };
 
   return (
-    <div ref={setNodeRef} style={style} >
+    <div ref={setNodeRef} style={transformStyle} >
       <Card key={site.id}>
         <div {...attributes} {...listeners}>
           <CardHeader className="flex flex-row items-center gap-4 pt-2">
