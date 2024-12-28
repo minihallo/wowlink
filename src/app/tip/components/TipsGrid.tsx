@@ -15,7 +15,7 @@ interface TipsGridProps {
 
 const logoMapping: { [key: string]: string }  = {
   inven: '/images/sites/inven.png',
-  potion: '/images/sites/potion.png'
+  potion: '/images/sites/potion.jpeg'
 };
 
 const TipsGrid = ({ tips }: TipsGridProps) => {
