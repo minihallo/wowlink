@@ -50,18 +50,16 @@ function SortableCard({ site, favorites, toggleFavorite }: SortableCardProps) {
     transition,
   } = useSortable({ id: site.id });
 
-  const transformStyle: CSSProperties  = {
+  const transformStyle: CSSProperties = {
     transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
     transition,
-    // 드래그 중일 때 시각적 피드백
-    touchAction: 'none', // 터치 디바이스에서 스크롤 대신 드래그 우선
-    userSelect: 'none',  // 텍스트 선택 방지
   };
 
-  // const style = {
-  //   transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
-  //   transition,
-  // };
+  const handleStyle: CSSProperties = {
+    cursor: 'grab',
+    touchAction: 'none',
+    userSelect: 'none'
+  };
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.stopPropagation(); // 이벤트 버블링 중지
@@ -83,7 +81,7 @@ function SortableCard({ site, favorites, toggleFavorite }: SortableCardProps) {
           <div className="flex-1">
             <div className="flex items-center justify-between mb-2">
               <CardTitle className="text-xl">{site.name}</CardTitle>
-              <div {...attributes} {...listeners} className="touch-none cursor-grab p-1">
+              <div {...attributes} {...listeners} style={handleStyle} className="touch-none cursor-grab p-1">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" className="text-gray-400">
                   <path d="M2 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-12 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-12 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
                 </svg>
@@ -119,8 +117,6 @@ function SortableCard({ site, favorites, toggleFavorite }: SortableCardProps) {
     </div>
   );
 }
-
-
 
 export default function FilteredSites({ initialSites }: HomeProps) {
   const [sites, setSites] = useState<Site[]>(initialSites || []);
@@ -264,47 +260,6 @@ export default function FilteredSites({ initialSites }: HomeProps) {
           </div>
         </SortableContext>
       </DndContext>
-{/*       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredSites.map((site) => (
-          <Card key={site.id}>
-            <CardHeader className="flex flex-row items-center gap-4 pt-2 pb-2">
-              <div className="w-12 h-12 relative flex-shrink-0">
-                <Image
-                  src={site.icon}
-                  alt={`${site.name} 아이콘`}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="flex-1">
-                <CardTitle className="mb-2 text-xl">{site.name}</CardTitle>
-                <CardDescription className="min-h-9 text-base">{site.description}</CardDescription>
-              </div>
-            </CardHeader>
-            <CardFooter className="pb-2">
-              <Link 
-                href={site.url}
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md text-center"
-                target="_blank"
-              >
-                방문하기
-              </Link>
-              <Button
-                variant="outline"
-                onClick={() => toggleFavorite(site.id)}
-                className={`h-10 w-10 ${
-                  favorites.includes(site.id) 
-                    ? "text-yellow-400 border-yellow-400 hover:border-yellow-500 hover:text-yellow-500" 
-                    : "text-gray-400 hover:text-gray-500 hover:border-gray-500"
-                }`}
-              >
-                <span className="text-2xl">★</span>
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
-      </div> */}
     </div>
   );
 }
