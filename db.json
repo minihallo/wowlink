@@ -27,7 +27,7 @@
     {
       "id": 4,
       "name": "Raider",
-      "description": "캐릭터 및 길드 프로필, Mythic+ 점수, 공격대 진행 상황 등의 정보 제공",
+      "description": "캐릭터 및 길드 프로필, Mythic+ 점수, 공격대 진행 상황",
       "icon": "/images/sites/raider.png",
       "url": "https://raider.io",
       "category": "tool"

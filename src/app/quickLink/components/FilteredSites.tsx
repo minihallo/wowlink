@@ -54,7 +54,6 @@ function SortableCard({ site, favorites, toggleFavorite }: SortableCardProps) {
     transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
     transition,
     // 드래그 중일 때 시각적 피드백
-    cursor: 'grab',
     touchAction: 'none', // 터치 디바이스에서 스크롤 대신 드래그 우선
     userSelect: 'none',  // 텍스트 선택 방지
   };
@@ -72,22 +71,27 @@ function SortableCard({ site, favorites, toggleFavorite }: SortableCardProps) {
   return (
     <div ref={setNodeRef} style={transformStyle} >
       <Card key={site.id}>
-        <div {...attributes} {...listeners}>
-          <CardHeader className="flex flex-row items-center gap-4 pt-2">
-            <div className="w-12 h-12 relative flex-shrink-0">
-              <Image
-                src={site.icon}
-                alt={`${site.name} 아이콘`}
-                fill
-                className="object-contain"
-              />
+        <CardHeader className="flex flex-row items-center gap-4 pt-2">
+          <div className="w-12 h-12 relative flex-shrink-0">
+            <Image
+              src={site.icon}
+              alt={`${site.name} 아이콘`}
+              fill
+              className="object-contain"
+            />
+          </div>
+          <div className="flex-1">
+            <div className="flex items-center justify-between mb-2">
+              <CardTitle className="text-xl">{site.name}</CardTitle>
+              <div {...attributes} {...listeners} className="touch-none cursor-grab p-1">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" className="text-gray-400">
+                  <path d="M2 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-12 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-12 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                </svg>
+              </div>
             </div>
-            <div className="flex-1">
-              <CardTitle className="mb-2 text-xl">{site.name}</CardTitle>
-              <CardDescription className="h-9 text-base">{site.description}</CardDescription>
-            </div>
-          </CardHeader>
-        </div>
+            <CardDescription className="h-9 text-base">{site.description}</CardDescription>
+          </div>
+        </CardHeader>
         <CardFooter className="pb-4">
             <Link 
               href={site.url}
