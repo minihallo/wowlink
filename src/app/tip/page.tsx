@@ -2,6 +2,7 @@ import { Black_Han_Sans } from 'next/font/google'
 import TipsGrid from "./components/TipsGrid";
 import { getTips } from "@/lib/db/getData";
 import { Metadata } from 'next'
+import { Tip } from '@/types/tip';
 
 export const metadata: Metadata = {
   title: 'WowLink | 팁',
@@ -16,7 +17,7 @@ const blackHanSans = Black_Han_Sans({
 
 
 export default async function TipPage() {
-  const tips = await getTips(); 
+  const tips: Tip[] = await getTips(); 
   return (
     <div>
       <div className={`flex flex-col items-center gap-4 py-8`}>

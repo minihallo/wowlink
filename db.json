@@ -25,6 +25,14 @@
       "category": "tool"
     },
     {
+      "id": 21,
+      "name": "Lorrgs",
+      "description": "레이드 직업별 쿨기 타이밍 확인",
+      "icon": "/images/assets/wowtoken.png",
+      "url": "https://lorrgs.io/",
+      "category": "tool"
+    },
+    {
       "id": 4,
       "name": "Raider",
       "description": "캐릭터 및 길드 프로필, Mythic+ 점수, 공격대 진행 상황",
@@ -159,7 +167,24 @@
       "icon": "/images/sites/qe.jpeg",
       "url": "https://questionablyepic.com/live/",
       "category": "tool"
+    },
+    {
+      "id": 22,
+      "name": "Undermine Exchange",
+      "description": "경매장 가격 확인",
+      "icon": "/images/sites/undermine.jpeg",
+      "url": "https://undermine.exchange/",
+      "category": "tool"
+    },
+    {
+      "id": 23,
+      "name": "Xu-Fu's Pet Battle Strategies",
+      "description": "와켓몬 관련 종합 사이트",
+      "icon": "/images/sites/petguide.jpeg",
+      "url": "https://www.wow-petguide.com/",
+      "category": "guide"
     }
+
   ],
   "discords": [
     {

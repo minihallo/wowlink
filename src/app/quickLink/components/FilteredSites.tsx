@@ -69,7 +69,7 @@ function SortableCard({ site, favorites, toggleFavorite }: SortableCardProps) {
   return (
     <div ref={setNodeRef} style={transformStyle} >
       <Card key={site.id}>
-        <CardHeader className="flex flex-row items-center gap-4 pt-2">
+        <CardHeader className="flex flex-row items-center gap-4 pt-2 pb-4">
           <div className="w-12 h-12 relative flex-shrink-0">
             <Image
               src={site.icon}
@@ -79,7 +79,7 @@ function SortableCard({ site, favorites, toggleFavorite }: SortableCardProps) {
             />
           </div>
           <div className="flex-1">
-            <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center justify-between">
               <CardTitle className="text-xl">{site.name}</CardTitle>
               <div {...attributes} {...listeners} style={handleStyle} className="touch-none cursor-grab p-1">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" className="text-gray-400">

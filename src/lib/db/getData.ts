@@ -17,10 +17,10 @@
 // export const getDiscords = () => getData<Discord[]>('discords')
 
 // import { Streamer } from "@/types/streamer"
-// export const getStreamers = () => getData<Streamer>('streamers')
+// export const getStreamers = () => getData<Streamer[]>('streamers')
 
 // import { Tip } from "@/types/tip"
-// export const getTips = () => getData<Tip>('tips')
+// export const getTips = () => getData<Tip[]>('tips')
 
 import clientPromise from './mongodb'
 
