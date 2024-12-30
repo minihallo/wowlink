@@ -26,7 +26,6 @@ const categoryMapping: { [key: string]: string }  = {
 const StreamerGrid = ({ streamers, twitchClientId, twitchClientSecret, chzzkAuth, chzzkSession }: StreamerGridProps) => {
   const [liveStatus, setLiveStatus] = useState<Record<string, boolean>>({});
   const [accessToken, setAccessToken] = useState<string>('');
-
   
   useEffect(() => {
     checkChzzkLiveStatus();
@@ -168,10 +167,10 @@ const StreamerGrid = ({ streamers, twitchClientId, twitchClientSecret, chzzkAuth
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {filteredStreamers.map((streamer) => (
-          <Card key={streamer.name} className="hover:bg-accent">
+          <Card key={streamer.name} className="hover:bg-accent w-full h-[90px] overflow-hidden">
             <Link href={streamer.url} target="_blank" className="block h-full">
-              <CardHeader className="p-4">
-                <div className="flex items-center gap-3">
+              <CardHeader className="p-4 h-full">
+                <div className="flex items-center gap-3 h-full">
                   <div className="flex-shrink-0">
                     <Image
                       src={streamer.profileImageUrl || '/images/assets/wowtoken.png'}
@@ -182,13 +181,18 @@ const StreamerGrid = ({ streamers, twitchClientId, twitchClientSecret, chzzkAuth
                       className="rounded-full"
                     />
                   </div>
-                  <div className="flex-1 flex items-center justify-between">
-                    <CardTitle className="text-base mr-2">{streamer.name}</CardTitle>
-                    <Circle 
+                  <div className="flex-1 items-center justify-between min-w-0">
+                    <CardTitle className="text-base mb-1 truncate">{streamer.title || '방송 중'}</CardTitle>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground">
+                      <span>{streamer.name}</span>
+                      <span>{streamer.viewerCount?.toLocaleString() || 0} 시청자</span>
+                    </div>
+
+                    {/* <Circle 
                       className={`h-3 w-3 ${
                         liveStatus[streamer.name] ? 'fill-red-500 text-red-500' : 'fill-gray-500 text-gray-500'
                       }`}
-                    />
+                    /> */}
                   </div>
                 </div>
               </CardHeader>
