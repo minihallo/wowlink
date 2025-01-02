@@ -126,6 +126,31 @@ export default function FilteredSites({ initialSites }: HomeProps) {
   const [favorites, setFavorites] = useState<number[]>([]);  // site.id들을 저장
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    const fetchStreamers = async () => {
+      try {
+        const response = await fetch('https://api.chzzk.naver.com/service/v1/search/lives?keyword=월드 오브 워크래프트');
+        const data = await response.json();
+        
+        // const chzzkStreamers = data.content.data.map((stream: any) => ({
+        //   title: stream.liveTitle,
+        //   name: stream.channel.channelName,
+        //   url: `https://chzzk.naver.com/live/${stream.channel.channelId}`,
+        //   category: 'kr',
+        //   platform: 'chzzk',
+        //   profileImageUrl: stream.channel.channelImageUrl,
+        //   isLive: true,
+        //   viewerCount: stream.concurrentUserCount
+        // }));
+
+      } catch (error) {
+        console.error('Error fetching Chzzk streamers:', error);
+      }
+    };
+
+    fetchStreamers();
+  }, []);
+
   const sensors = useSensors(
     useSensor(PointerSensor, {
       // 드래그 시작을 위한 최소 이동 거리 (픽셀)

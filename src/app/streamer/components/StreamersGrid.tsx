@@ -9,6 +9,7 @@ import { Streamer } from '@/types/streamer';
 
 import Image from "next/image";
 import { ChzzkClient } from 'chzzk';
+import axios from 'axios';
 
 interface StreamerGridProps {
   streamers: Streamer[];
@@ -182,7 +183,7 @@ const StreamerGrid = ({ streamers, twitchClientId, twitchClientSecret, chzzkAuth
                     />
                   </div>
                   <div className="flex-1 items-center justify-between min-w-0">
-                    <CardTitle className="text-base mb-1 truncate">{streamer.title || '방송 중'}</CardTitle>
+                    <CardTitle className="text-base mb-1 line-clamp-2">{streamer.title || '방송 중'}</CardTitle>
                     <div className="flex items-center justify-between text-sm text-muted-foreground">
                       <span>{streamer.name}</span>
                       <span>{streamer.viewerCount?.toLocaleString() || 0} 시청자</span>
