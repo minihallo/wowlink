@@ -22,11 +22,11 @@
 // import { Tip } from "@/types/tip"
 // export const getTips = () => getData<Tip[]>('tips')
 
-import clientPromise from './mongodb'
+import { connectToDatabase } from './mongodb'
 
 export async function getData<T>(collection: string): Promise<T[]> {
   try {
-    const client = await clientPromise;
+    const { client } = await connectToDatabase();
     const db = client.db("wowlink");
     
     const data = await db
