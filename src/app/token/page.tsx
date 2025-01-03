@@ -2,6 +2,7 @@ import { getWoWToken } from "@/lib/api/blizzard";
 import Image from "next/image";
 import { Black_Han_Sans } from 'next/font/google'
 import { Metadata } from 'next'
+import TokenChart from "./components/TokenChart";
 
 export const metadata: Metadata = {
   title: 'WowLink | 토큰',
@@ -32,6 +33,7 @@ export default async function TokenPage() {
         현재 <span className="text-yellow-500">WoW 토큰</span> 시세
       </h1>
       <p className="text-xl">{tokenPrice.toLocaleString()} 골드</p>
+      <TokenChart />
     </div>
   );
 }
