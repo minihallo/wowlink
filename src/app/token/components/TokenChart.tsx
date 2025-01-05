@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
     LineChart,
     Line,
@@ -13,6 +13,7 @@ import {
     LabelList,
     TooltipProps,
 } from "recharts";
+import { DateRangePicker } from '@/components/ui/date-range-picker';
 
 type TokenType = {
     timestamp: string;
@@ -24,6 +25,11 @@ const TokenChart = (data: any) => {
         return <div>No data available</div>;
     }
 
+    const [dateRange, setDateRange] = React.useState<{ from: Date; to: Date } | undefined>({
+        from: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+        to: new Date()
+    });
+
     const chartData = data.data[0].kr.sort((a: any, b: any) =>
         new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
     ).map((item: any) => ({
@@ -31,11 +37,25 @@ const TokenChart = (data: any) => {
         price: item.price,
     }))
 
+    const filteredData = data.data[0].kr.filter((item: any) => {
+        const date = new Date(item.timestamp);
+        return date >= dateRange!.from && date <= dateRange!.to;
+    })
+    .map((item: any) => ({
+        name: new Date(item.timestamp).toLocaleDateString(),
+        price: item.price,
+    }));
+
     return (
         <div className="w-[66vw] h-[400px]">
+            <DateRangePicker
+                value={dateRange}
+                onChange={setDateRange}
+            />
+
             <ResponsiveContainer width='100%' height='100%'>
                 <LineChart 
-                    data={chartData} 
+                    data={filteredData} 
                     margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
                 >
                     {/* <CartesianGrid strokeDasharray="3 3" /> */}
