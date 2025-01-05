@@ -31,7 +31,7 @@ const StreamerGrid = ({ streamers, twitchClientId, twitchClientSecret, chzzkAuth
   useEffect(() => {
     checkChzzkLiveStatus();
     // 1분마다 상태 업데이트
-    const interval = setInterval(checkChzzkLiveStatus, 60000);
+    const interval = setInterval(checkChzzkLiveStatus, 180000);
     return () => clearInterval(interval);
   }, [streamers]);
 
@@ -62,6 +62,32 @@ const StreamerGrid = ({ streamers, twitchClientId, twitchClientSecret, chzzkAuth
     }
   };
 
+  // const checkChzzkLiveStatus = async () => {
+  //   try {
+  //     const chzzkStreamers = streamers.filter(s => s.platform === 'chzzk');
+      
+  //     const results = await Promise.all(
+  //       chzzkStreamers.map(async (streamer) => {
+  //         const response = await fetch(`/api/chzzk-status?username=${streamer.name}`);
+  //         const data = await response.json();
+  //         return {
+  //           name: streamer.name,
+  //           isLive: data.isLive
+  //         };
+  //       })
+  //     );
+  
+  //     const newLiveStatus: Record<string, boolean> = {};
+  //     results.forEach(result => {
+  //       newLiveStatus[result.name] = result.isLive;
+  //     });
+  
+  //     setLiveStatus(prev => ({ ...prev, ...newLiveStatus }));
+  //   } catch (error) {
+  //     console.error('Error checking Chzzk live status:', error);
+  //   }
+  // };
+
   useEffect(() => {
     const initTwitch = async () => {
       const token = await getTwitchToken();
@@ -74,7 +100,7 @@ const StreamerGrid = ({ streamers, twitchClientId, twitchClientSecret, chzzkAuth
     if (accessToken) {
       checkTwitchLiveStatus();
       // 1분마다 상태 업데이트
-      const interval = setInterval(checkTwitchLiveStatus, 60000);
+      const interval = setInterval(checkTwitchLiveStatus, 180000);
       return () => clearInterval(interval);
     }
   }, [accessToken, streamers]);
@@ -168,10 +194,10 @@ const StreamerGrid = ({ streamers, twitchClientId, twitchClientSecret, chzzkAuth
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {filteredStreamers.map((streamer) => (
-          <Card key={streamer.name} className="hover:bg-accent w-full h-[90px] overflow-hidden">
+          <Card key={streamer.name} className="hover:bg-accent">
             <Link href={streamer.url} target="_blank" className="block h-full">
-              <CardHeader className="p-4 h-full">
-                <div className="flex items-center gap-3 h-full">
+              <CardHeader className="p-4">
+                <div className="flex items-center gap-3">
                   <div className="flex-shrink-0">
                     <Image
                       src={streamer.profileImageUrl || '/images/assets/wowtoken.png'}
@@ -182,18 +208,13 @@ const StreamerGrid = ({ streamers, twitchClientId, twitchClientSecret, chzzkAuth
                       className="rounded-full"
                     />
                   </div>
-                  <div className="flex-1 items-center justify-between min-w-0">
-                    <CardTitle className="text-base mb-1 line-clamp-2">{streamer.title || '방송 중'}</CardTitle>
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <span>{streamer.name}</span>
-                      <span>{streamer.viewerCount?.toLocaleString() || 0} 시청자</span>
-                    </div>
-
-                    {/* <Circle 
+                  <div className="flex-1 flex items-center justify-between">
+                    <CardTitle className="text-base mr-2">{streamer.name}</CardTitle>
+                    <Circle 
                       className={`h-3 w-3 ${
                         liveStatus[streamer.name] ? 'fill-red-500 text-red-500' : 'fill-gray-500 text-gray-500'
                       }`}
-                    /> */}
+                    />
                   </div>
                 </div>
               </CardHeader>

@@ -1,9 +1,8 @@
-import clientPromise from '../src/lib/db/mongodb.ts'
+import { connectToDatabase } from '../src/lib/db/mongodb.ts'
 
 async function getNextId(collectionName: string) {
   try {
-    const client = await clientPromise
-    const db = client.db("wowlink")
+    const { db } = await connectToDatabase()
     
     // id 필드를 기준으로 내림차순 정렬 후 첫 번째 문서 가져오기
     const lastDocument = await db.collection(collectionName)

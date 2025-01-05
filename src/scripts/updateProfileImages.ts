@@ -22,7 +22,7 @@ async function updateProfileImages() {
     const client = await connectToMongoDB();
 
     await updateTwitchProfileImages(client);
-    // await updateChzzkProfileImages(client);
+    await updateChzzkProfileImages(client);
   } catch (error) {
     console.error('Script error:', error);
     process.exit(1);
@@ -117,40 +117,40 @@ const updateTwitchProfileImages = async (client: MongoClient) => {
 
   console.log(streamersInfo);
 
-  // for (const streamer of twitchStreamers) {
-  //   try {
-  //     // 트위치 API로 유저 정보 가져오기
-  //     const userResponse = await fetch(`https://api.twitch.tv/helix/users?login=${streamer.name}`, {
-  //       headers: {
-  //         'Client-ID': process.env.TWITCH_CLIENT_ID!,
-  //         'Authorization': `Bearer ${accessToken}`
-  //       }
-  //     });
+  for (const streamer of twitchStreamers) {
+    try {
+      // 트위치 API로 유저 정보 가져오기
+      const userResponse = await fetch(`https://api.twitch.tv/helix/users?login=${streamer.name}`, {
+        headers: {
+          'Client-ID': process.env.TWITCH_CLIENT_ID!,
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
 
-  //     const userData = await userResponse.json();
+      const userData = await userResponse.json();
       
-  //     if (userData.data && userData.data[0]) {
-  //       const profileImageUrl = userData.data[0].profile_image_url;
+      if (userData.data && userData.data[0]) {
+        const profileImageUrl = userData.data[0].profile_image_url;
         
-  //       // MongoDB 업데이트
-  //       await streamersCollection.updateOne(
-  //         { name: streamer.name },
-  //         { 
-  //           $set: { 
-  //             profileImageUrl: profileImageUrl,
-  //             lastUpdated: new Date()
-  //           } 
-  //         }
-  //       );
+        // MongoDB 업데이트
+        await streamersCollection.updateOne(
+          { name: streamer.name },
+          { 
+            $set: { 
+              profileImageUrl: profileImageUrl,
+              lastUpdated: new Date()
+            } 
+          }
+        );
 
-  //       console.log(`Updated profile image for ${streamer.name}`);
-  //     } else {
-  //       console.log(`No Twitch data found for ${streamer.name}`);
-  //     }
-  //   } catch (error) {
-  //     console.error(`Error updating ${streamer.name}:`, error);
-  //   }
-  // }
+        console.log(`Updated profile image for ${streamer.name}`);
+      } else {
+        console.log(`No Twitch data found for ${streamer.name}`);
+      }
+    } catch (error) {
+      console.error(`Error updating ${streamer.name}:`, error);
+    }
+  }
 
   } catch (error) {
     console.error('Error updating Twitch profile images:', error);

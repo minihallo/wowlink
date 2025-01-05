@@ -27,6 +27,7 @@
     "dotenv": "^16.4.7",
     "json-server": "^1.0.0-beta.1",
     "lucide-react": "^0.468.0",
+    "mobx-react-lite": "^4.1.0",
     "mongodb": "^6.12.0",
     "next": "^15.1.2",
     "next-sitemap": "^4.2.3",
