@@ -12,13 +12,15 @@ export async function GET() {
     const { db } = await connectToDatabase();
     
     // const additionalData = [
-    //   { price: 175593, timestamp: new Date('2025-01-03T01:00:00Z') },  // KST 10:00
-    //   { price: 173634, timestamp: new Date('2025-01-02T01:00:00Z') },
-    //   { price: 165515, timestamp: new Date('2025-01-01T01:00:00Z') },
-    //   { price: 180670, timestamp: new Date('2024-12-31T01:00:00Z') },
-    //   { price: 167583, timestamp: new Date('2024-12-29T01:00:00Z') },
-    //   { price: 167429, timestamp: new Date('2024-12-28T01:00:00Z') },
-    //   { price: 177288, timestamp: new Date('2024-12-27T01:00:00Z') },
+      // { price: 164985, timestamp: new Date('2025-01-05T01:00:00Z') },
+      // { price: 180146, timestamp: new Date('2025-01-04T01:00:00Z') },
+      // { price: 175593, timestamp: new Date('2025-01-03T01:00:00Z') },  // KST 10:00
+      // { price: 173634, timestamp: new Date('2025-01-02T01:00:00Z') },
+      // { price: 165515, timestamp: new Date('2025-01-01T01:00:00Z') },
+      // { price: 180670, timestamp: new Date('2024-12-31T01:00:00Z') },
+      // { price: 167583, timestamp: new Date('2024-12-29T01:00:00Z') },
+      // { price: 167429, timestamp: new Date('2024-12-28T01:00:00Z') },
+      // { price: 177288, timestamp: new Date('2024-12-27T01:00:00Z') },
     // ];
     
     // await db.collection<{ kr: TokenPrice[] }>('tokens').updateOne(

@@ -2,6 +2,8 @@ import { Black_Han_Sans } from 'next/font/google'
 import StreamerGrid from "./components/StreamersGrid";
 import { getStreamers } from "@/lib/db/getData";
 import { Metadata } from 'next'
+import getTwitchStreamers from '@/lib/api/twitch/getStreamers';
+import getChzzkStreamers from '@/lib/api/chzzk/getStreamers';
 
 export const metadata: Metadata = {
   title: 'WowLink | 스트리머',
@@ -17,6 +19,9 @@ const blackHanSans = Black_Han_Sans({
 export default async function StreamerPage() {
   let streamers = await getStreamers();
 
+  // let streamers = await getChzzkStreamers();
+  // const streamers = await getTwitchStreamers();
+
   return (
     <div>
       <div className={`flex flex-col items-center gap-4 py-8`}>
@@ -25,7 +30,7 @@ export default async function StreamerPage() {
         </h1>
       </div>
       <StreamerGrid 
-        streamers={streamers}
+        streamers={streamers!}
         twitchClientId={process.env.TWITCH_CLIENT_ID!}
         twitchClientSecret={process.env.TWITCH_CLIENT_SECRET!}
         chzzkAuth={process.env.NID_AUT!}

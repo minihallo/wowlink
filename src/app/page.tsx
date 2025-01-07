@@ -3,6 +3,7 @@ import { Site } from "@/types/site";
 import FilteredSites from "./quickLink/components/FilteredSites";
 import { Black_Han_Sans } from 'next/font/google'
 import { Metadata } from 'next'
+import { GET } from "./api/token/update/route";
 
 export const metadata: Metadata = {
   title: 'WowLink',

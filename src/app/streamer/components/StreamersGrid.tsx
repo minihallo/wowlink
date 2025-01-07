@@ -9,6 +9,7 @@ import { Streamer } from '@/types/streamer';
 
 import Image from "next/image";
 import { ChzzkClient } from 'chzzk';
+import axios from 'axios';
 
 interface StreamerGridProps {
   streamers: Streamer[];
@@ -26,12 +27,11 @@ const categoryMapping: { [key: string]: string }  = {
 const StreamerGrid = ({ streamers, twitchClientId, twitchClientSecret, chzzkAuth, chzzkSession }: StreamerGridProps) => {
   const [liveStatus, setLiveStatus] = useState<Record<string, boolean>>({});
   const [accessToken, setAccessToken] = useState<string>('');
-
   
   useEffect(() => {
     checkChzzkLiveStatus();
     // 1분마다 상태 업데이트
-    const interval = setInterval(checkChzzkLiveStatus, 60000);
+    const interval = setInterval(checkChzzkLiveStatus, 180000);
     return () => clearInterval(interval);
   }, [streamers]);
 
@@ -62,6 +62,32 @@ const StreamerGrid = ({ streamers, twitchClientId, twitchClientSecret, chzzkAuth
     }
   };
 
+  // const checkChzzkLiveStatus = async () => {
+  //   try {
+  //     const chzzkStreamers = streamers.filter(s => s.platform === 'chzzk');
+      
+  //     const results = await Promise.all(
+  //       chzzkStreamers.map(async (streamer) => {
+  //         const response = await fetch(`/api/chzzk-status?username=${streamer.name}`);
+  //         const data = await response.json();
+  //         return {
+  //           name: streamer.name,
+  //           isLive: data.isLive
+  //         };
+  //       })
+  //     );
+  
+  //     const newLiveStatus: Record<string, boolean> = {};
+  //     results.forEach(result => {
+  //       newLiveStatus[result.name] = result.isLive;
+  //     });
+  
+  //     setLiveStatus(prev => ({ ...prev, ...newLiveStatus }));
+  //   } catch (error) {
+  //     console.error('Error checking Chzzk live status:', error);
+  //   }
+  // };
+
   useEffect(() => {
     const initTwitch = async () => {
       const token = await getTwitchToken();
@@ -74,7 +100,7 @@ const StreamerGrid = ({ streamers, twitchClientId, twitchClientSecret, chzzkAuth
     if (accessToken) {
       checkTwitchLiveStatus();
       // 1분마다 상태 업데이트
-      const interval = setInterval(checkTwitchLiveStatus, 60000);
+      const interval = setInterval(checkTwitchLiveStatus, 180000);
       return () => clearInterval(interval);
     }
   }, [accessToken, streamers]);

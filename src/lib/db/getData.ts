@@ -22,6 +22,7 @@
 // import { Tip } from "@/types/tip"
 // export const getTips = () => getData<Tip[]>('tips')
 
+
 import { connectToDatabase } from './mongodb'
 
 export async function getData<T>(collection: string): Promise<T[]> {
@@ -40,7 +41,7 @@ export async function getData<T>(collection: string): Promise<T[]> {
     throw new Error(`Failed to fetch from ${collection}`)
   }
 }
-
+  
 import { Site } from "@/types/site"
 export const getSites = () => getData<Site>('sites')
 
@@ -52,3 +53,6 @@ export const getStreamers = () => getData<Streamer>('streamers')
 
 import { Tip } from "@/types/tip"
 export const getTips = () => getData<Tip>('tips')
+
+import { Token } from '@/types/token';
+export const getTokens = () => getData<Token>('tokens')

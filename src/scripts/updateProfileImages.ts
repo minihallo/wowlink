@@ -59,61 +59,63 @@ const updateTwitchProfileImages = async (client: MongoClient) => {
   const data = await response.json();
   const accessToken = data.access_token;
 
-  // const gameResponse = await fetch(
-  //   'https://api.twitch.tv/helix/games?name=World of Warcraft',
-  //   {
-  //     headers: {
-  //       'Client-ID': process.env.TWITCH_CLIENT_ID!,
-  //       'Authorization': `Bearer ${accessToken}`
-  //     }
-  //   }
-  // );
-  // const gameData = await gameResponse.json();
-  // const wowGameId = gameData.data[0].id;
+  const gameResponse = await fetch(
+    'https://api.twitch.tv/helix/games?name=World of Warcraft',
+    {
+      headers: {
+        'Client-ID': process.env.TWITCH_CLIENT_ID!,
+        'Authorization': `Bearer ${accessToken}`
+      }
+    }
+  );
+  const gameData = await gameResponse.json();
+  const wowGameId = gameData.data[0].id;
 
-  // const streamsResponse = await fetch(
-  //   `https://api.twitch.tv/helix/streams?game_id=${wowGameId}&first=100`,
-  //   {
-  //     headers: {
-  //       'Client-ID': process.env.TWITCH_CLIENT_ID!,
-  //       'Authorization': `Bearer ${accessToken}`
-  //     }
-  //   }
-  // );
+  const streamsResponse = await fetch(
+    `https://api.twitch.tv/helix/streams?game_id=${wowGameId}&first=100`,
+    {
+      headers: {
+        'Client-ID': process.env.TWITCH_CLIENT_ID!,
+        'Authorization': `Bearer ${accessToken}`
+      }
+    }
+  );
 
-  // const streamsData = await streamsResponse.json();
+  const streamsData = await streamsResponse.json();
 
-  // // 시청자 수로 필터링 (예: 1000명 이상)
-  // const popularStreams = streamsData.data.filter(
-  //   (stream: any) => stream.viewer_count >= 1000
-  // );
+  // 시청자 수로 필터링 (예: 1000명 이상)
+  const popularStreams = streamsData.data.filter(
+    (stream: any) => stream.viewer_count >= 1000
+  );
 
 
-  // console.log('Found popular streams:', popularStreams);
+  console.log('Found popular streams:', popularStreams);
 
-  // const userIds = popularStreams.map((stream: any) => stream.user_id).join('&id=');
-  // const usersResponse = await fetch(
-  //   `https://api.twitch.tv/helix/users?id=${userIds}`,
-  //   {
-  //     headers: {
-  //       'Client-ID': process.env.TWITCH_CLIENT_ID!,
-  //       'Authorization': `Bearer ${accessToken}`
-  //     }
-  //   }
-  // );
-  // const usersData = await usersResponse.json();
+  const userIds = popularStreams.map((stream: any) => stream.user_id).join('&id=');
+  const usersResponse = await fetch(
+    `https://api.twitch.tv/helix/users?id=${userIds}`,
+    {
+      headers: {
+        'Client-ID': process.env.TWITCH_CLIENT_ID!,
+        'Authorization': `Bearer ${accessToken}`
+      }
+    }
+  );
+  const usersData = await usersResponse.json();
 
-  // // 스트림 데이터와 사용자 정보를 결합
-  // const streamersInfo = popularStreams.map((stream: any) => {
-  //   const userInfo = usersData.data.find((user: any) => user.id === stream.user_id);
-  //   return {
-  //     name: userInfo.login,            // 사용자 로그인 이름
-  //     displayName: userInfo.display_name,  // 표시 이름
-  //     url: `https://www.twitch.tv/${userInfo.login}`,  // 채널 URL
-  //     viewerCount: stream.viewer_count,
-  //     profileImage: userInfo.profile_image_url
-  //   };
-  // });
+  // 스트림 데이터와 사용자 정보를 결합
+  const streamersInfo = popularStreams.map((stream: any) => {
+    const userInfo = usersData.data.find((user: any) => user.id === stream.user_id);
+    return {
+      name: userInfo.login,            // 사용자 로그인 이름
+      displayName: userInfo.display_name,  // 표시 이름
+      url: `https://www.twitch.tv/${userInfo.login}`,  // 채널 URL
+      viewerCount: stream.viewer_count,
+      profileImage: userInfo.profile_image_url
+    };
+  });
+
+  console.log(streamersInfo);
 
   for (const streamer of twitchStreamers) {
     try {
