@@ -15,29 +15,40 @@ import {
 } from "recharts";
 import { DateRangePicker } from '@/components/ui/date-range-picker';
 
+interface TokenChartProps {
+    data: {
+        kr: {
+            timestamp: string;
+            price: number;
+        }[]
+    }[]
+}
+
 type TokenType = {
     timestamp: string;
     price: number;
 }
 
-const TokenChart = (data: any) => {
-    if (!data || data.length === 0) {
-        return <div>No data available</div>;
-    }
+const TokenChart = ({data}: TokenChartProps) => {
+    const krData = data[0].kr;
 
     const [dateRange, setDateRange] = React.useState<{ from: Date; to: Date } | undefined>({
         from: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
         to: new Date()
     });
 
-    const chartData = data.data[0].kr.sort((a: any, b: any) =>
+    if (!data || data.length === 0) {
+        return <div>No data available</div>;
+    }
+
+    const chartData = krData.sort((a: TokenType, b: TokenType) =>
         new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
     ).map((item: any) => ({
         name: new Date(item.timestamp).toLocaleDateString(),
         price: item.price,
     }))
 
-    const filteredData = data.data[0].kr.filter((item: any) => {
+    const filteredData = krData.filter((item: TokenType) => {
         const date = new Date(item.timestamp);
         return date >= dateRange!.from && date <= dateRange!.to;
     })
