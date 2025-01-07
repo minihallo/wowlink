@@ -54,5 +54,5 @@ export const getStreamers = () => getData<Streamer>('streamers')
 import { Tip } from "@/types/tip"
 export const getTips = () => getData<Tip>('tips')
 
-import { Token } from '@/types/token';
-export const getTokens = () => getData<Token>('tokens')
+import { TokenDocument } from '@/types/token';
+export const getTokens = () => getData<TokenDocument>('tokens')

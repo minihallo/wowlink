@@ -14,14 +14,10 @@ import {
     TooltipProps,
 } from "recharts";
 import { DateRangePicker } from '@/components/ui/date-range-picker';
+import { Token, TokenDocument } from '@/types/token';
 
 interface TokenChartProps {
-    data: {
-        kr: {
-            timestamp: string;
-            price: number;
-        }[]
-    }[]
+    data: TokenDocument[];
 }
 
 type TokenType = {
