@@ -15,6 +15,7 @@ import {
 } from "recharts";
 import { DateRangePicker } from '@/components/ui/date-range-picker';
 import { Token, TokenDocument } from '@/types/token';
+import { DateRange } from 'react-day-picker';
 
 interface TokenChartProps {
     data: TokenDocument[];
@@ -28,7 +29,7 @@ type TokenType = {
 const TokenChart = ({data}: TokenChartProps) => {
     const krData = data[0].kr;
 
-    const [dateRange, setDateRange] = React.useState<{ from: Date; to: Date } | undefined>({
+    const [dateRange, setDateRange] = React.useState<DateRange>({
         from: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
         to: new Date()
     });
@@ -46,7 +47,10 @@ const TokenChart = ({data}: TokenChartProps) => {
 
     const filteredData = krData.filter((item: TokenType) => {
         const date = new Date(item.timestamp);
-        return date >= dateRange!.from && date <= dateRange!.to;
+        if (dateRange.from && dateRange.to) {
+            return date >= dateRange.from && date <= dateRange.to;
+        }
+        return true; // 날짜 범위가 없으면 모든 데이터 표시
     })
     .map((item: any) => ({
         name: new Date(item.timestamp).toLocaleDateString(),
