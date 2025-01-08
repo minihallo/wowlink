@@ -1,5 +1,6 @@
 import { getWoWToken } from "@/lib/api/blizzard";
 import { connectToDatabase } from "@/lib/db/mongodb";
+import { revalidatePath } from 'next/cache';
 
 interface TokenPrice {
   price: number;
@@ -47,6 +48,8 @@ export async function GET() {
       },
       { upsert: true }
     );
+
+    revalidatePath('/token');
 
     return Response.json({ success: true, price: tokenPrice });
   } catch (error) {

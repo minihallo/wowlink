@@ -58,7 +58,7 @@ const TokenChart = ({data}: TokenChartProps) => {
     }));
 
     return (
-        <div className="w-[66vw] h-[400px]">
+        <div className="w-[66vw] h-[400px] max-w-[1200px] items-center">
             <DateRangePicker
                 value={dateRange}
                 onChange={setDateRange}
@@ -86,10 +86,14 @@ const TokenChart = ({data}: TokenChartProps) => {
                                     <div style={{ 
                                         backgroundColor: '#fff',
                                         border: '1px solid #ccc',
-                                        padding: '8px'
+                                        padding: '8px',
+                                        textAlign: 'center'
                                     }}>
                                         <p style={{ color: '#666' }}>
                                             {`${label} 10:00 기준`}
+                                        </p>
+                                        <p style={{ color: '#fa812a', fontWeight: 'bold' }}>
+                                            {`${payload[0].value?.toLocaleString()} 골드`}
                                         </p>
                                     </div>
                                 );
@@ -109,12 +113,20 @@ const TokenChart = ({data}: TokenChartProps) => {
                         labelStyle={{ color: '#666' }}  // 레이블(날짜) 색상
                         itemStyle={{ color: '#fa812a' }}
                     /> */}
-                    <Legend />
+                    <Legend 
+                        verticalAlign="bottom" 
+                        align="center"
+                        wrapperStyle={{
+                            paddingTop: "20px",
+                            marginLeft: "30px"
+                        }}
+                    />
                     <Line
                         type="monotone"
                         dataKey="price"
                         stroke="#fa812a"
                         activeDot={{ r: 8 }}
+                        name="골드"
                     >
                         <LabelList 
                             position="top" 
