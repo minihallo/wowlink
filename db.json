@@ -49,6 +49,22 @@
       "category": "tool"
     },
     {
+      "id": 24,
+      "name": "Mythic Trap",
+      "description": "에코 레이드 공략",
+      "icon": "/images/sites/mythictrap.png",
+      "url": "https://www.mythictrap.com/",
+      "category": "guide"
+    },
+    {
+      "id": 25,
+      "name": "Raid Plan",
+      "description": "레이드 진형과 전략 수립을 위한 시각적 도구",
+      "icon": "/images/sites/raidplan.png",
+      "url": "https://raidplan.io/",
+      "category": "tool"
+    },
+    {
       "id": 16,
       "name": "KEYSTONE.GURU",
       "description": "쐐기 루트를 만들고 공유할 수 있는 사이트",
@@ -183,8 +199,23 @@
       "icon": "/images/sites/petguide.jpeg",
       "url": "https://www.wow-petguide.com/",
       "category": "guide"
+    },
+    {
+      "id": 26,
+      "name": "공식 홈페이지",
+      "description": "와우 한국 공식 홈페이지",
+      "icon": "/images/assets/wowtoken.png",
+      "url": "https://worldofwarcraft.blizzard.com/ko-kr/",
+      "category": "community"
+    },
+    {
+      "id": 27,
+      "name": "이터인포",
+      "description": "WCL 전문화별 Top 100 링크 제공",
+      "icon": "/images/sites/eterinfo.png",
+      "url": "http://eterinfo.kr/wow",
+      "category": "tool"
     }
-
   ],
   "discords": [
     {
