@@ -38,13 +38,6 @@ const TokenChart = ({data}: TokenChartProps) => {
         return <div>No data available</div>;
     }
 
-    const chartData = krData.sort((a: TokenType, b: TokenType) =>
-        new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-    ).map((item: any) => ({
-        name: new Date(item.timestamp).toLocaleDateString(),
-        price: item.price,
-    }))
-
     const filteredData = krData.filter((item: TokenType) => {
         const date = new Date(item.timestamp);
         if (dateRange.from && dateRange.to) {
@@ -53,9 +46,38 @@ const TokenChart = ({data}: TokenChartProps) => {
         return true; // 날짜 범위가 없으면 모든 데이터 표시
     })
     .map((item: any) => ({
-        name: new Date(item.timestamp).toLocaleDateString(),
+        name: new Date(item.timestamp).getTime(),
+        displayName: new Date(item.timestamp).toLocaleString(),
         price: item.price,
+        originalTimestamp: item.timestamp
     }));
+
+    const generateTwelveHourTicks = (dateRange: DateRange) => {
+        if (!dateRange.from || !dateRange.to) return [];
+        
+        const ticks = [];
+        const startDate = new Date(dateRange.from);
+        const currentHour = startDate.getHours();
+        if (currentHour < 12) {
+            startDate.setHours(0, 0, 0, 0);
+        } else {
+            startDate.setHours(12, 0, 0, 0);
+        }
+        
+        const currentDate = new Date(startDate);
+        
+        while (currentDate <= dateRange.to) {
+            ticks.push(currentDate.getTime());
+            if (currentDate.getHours() === 12) {
+                currentDate.setHours(0, 0, 0, 0);
+                currentDate.setDate(currentDate.getDate() + 1);
+            } else {
+                currentDate.setHours(12, 0, 0, 0);
+            }
+        }
+        
+        return ticks;
+    }
 
     return (
         <div className="w-[66vw] h-[400px] max-w-[1200px] items-center">
@@ -63,7 +85,6 @@ const TokenChart = ({data}: TokenChartProps) => {
                 value={dateRange}
                 onChange={setDateRange}
             />
-
             <ResponsiveContainer width='100%' height='100%'>
                 <LineChart 
                     data={filteredData} 
@@ -72,16 +93,35 @@ const TokenChart = ({data}: TokenChartProps) => {
                     {/* <CartesianGrid strokeDasharray="3 3" /> */}
                     <XAxis 
                         dataKey="name" 
-                        padding={{ left: 30, right: 30 }} 
+                        padding={{ left: 30, right: 30 }}
+                        scale="time"
+                        type="number"
+                        domain={['dataMin', 'dataMax']}
+                        ticks={generateTwelveHourTicks(dateRange)}
+                        tickFormatter={(timeStr) => {
+                            const date = new Date(timeStr);
+                            const hours = date.getHours();
+                            if (hours === 0) {
+                                return `${date.toLocaleString('default', { month: 'short' })} ${date.getDate()}일 `;
+                            } else {
+                                return `12:00`;
+                            }
+                        }}
                     />
                     <YAxis 
                         domain={['dataMin - 5000', 'dataMax + 5000']}
                         tickFormatter={(value) => `${(value/10000).toFixed(1)}만`}
                     />
 
-                    <Tooltip 
+                     <Tooltip 
                         content={({ active, payload, label }: TooltipProps<number, string>) => {
                             if (active && payload && payload.length) {
+                                const originalTime = payload[0].payload.originalTimestamp;
+                                const date = new Date(originalTime);
+                                const hours = date.getHours().toString().padStart(2, '0');
+                                const minutes = date.getMinutes().toString().padStart(2, '0');
+                                const timeString = `${hours}:${minutes}`;
+                                
                                 return (
                                     <div style={{ 
                                         backgroundColor: '#fff',
@@ -90,7 +130,7 @@ const TokenChart = ({data}: TokenChartProps) => {
                                         textAlign: 'center'
                                     }}>
                                         <p style={{ color: '#666' }}>
-                                            {`${label} 10:00 기준`}
+                                            {`${new Date(Number(label)).toLocaleDateString()} ${timeString} 기준`}
                                         </p>
                                         <p style={{ color: '#fa812a', fontWeight: 'bold' }}>
                                             {`${payload[0].value?.toLocaleString()} 골드`}
@@ -101,18 +141,6 @@ const TokenChart = ({data}: TokenChartProps) => {
                             return null;
                         }}
                     />
-                    {/* <Tooltip 
-                        labelFormatter={(label) => `${label} 10:00 기준`}
-                        formatter={(value) => value.toLocaleString()}  // 값만 표시
-                        contentStyle={{ 
-                            backgroundColor: '#fff',
-                            border: '1px solid #ccc',
-                            color: '#333',  // 텍스트 색상
-                            margin: '0',
-                        }}
-                        labelStyle={{ color: '#666' }}  // 레이블(날짜) 색상
-                        itemStyle={{ color: '#fa812a' }}
-                    /> */}
                     <Legend 
                         verticalAlign="bottom" 
                         align="center"
@@ -125,14 +153,14 @@ const TokenChart = ({data}: TokenChartProps) => {
                         type="monotone"
                         dataKey="price"
                         stroke="#fa812a"
-                        activeDot={{ r: 8 }}
+                        dot={{ r: 0}}
                         name="골드"
                     >
-                        <LabelList 
+                        {/* <LabelList 
                             position="top" 
                             offset={10}
                             fill="#fa812a"
-                        />
+                        /> */}
                     </Line>
                 </LineChart>
             </ResponsiveContainer>
