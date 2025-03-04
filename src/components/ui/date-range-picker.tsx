@@ -16,8 +16,8 @@ import {
 
 interface DateRangePickerProps {
   className?: string;
-  value: { from: Date; to: Date } | undefined;
-  onChange: React.Dispatch<React.SetStateAction<{ from: Date; to: Date } | undefined>>;
+  value: DateRange;
+  onChange: React.Dispatch<React.SetStateAction<DateRange>>;
 }
 
 export function DateRangePicker({
@@ -58,11 +58,7 @@ export function DateRangePicker({
             mode="range"
             defaultMonth={value?.from}
             selected={value}
-            onSelect={(range: DateRange | undefined) => {
-              if (range) {
-                onChange(range);
-              }
-            }}
+            onSelect={(range) => range && onChange(range)}
             numberOfMonths={2}
           />
         </PopoverContent>

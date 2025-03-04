@@ -14,32 +14,43 @@ import {
     TooltipProps,
 } from "recharts";
 import { DateRangePicker } from '@/components/ui/date-range-picker';
+import { Token, TokenDocument } from '@/types/token';
+import { DateRange } from 'react-day-picker';
+
+interface TokenChartProps {
+    data: TokenDocument[];
+}
 
 type TokenType = {
     timestamp: string;
     price: number;
 }
 
-const TokenChart = (data: any) => {
-    if (!data || data.length === 0) {
-        return <div>No data available</div>;
-    }
+const TokenChart = ({data}: TokenChartProps) => {
+    const krData = data[0].kr;
 
-    const [dateRange, setDateRange] = React.useState<{ from: Date; to: Date } | undefined>({
+    const [dateRange, setDateRange] = React.useState<DateRange>({
         from: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
         to: new Date()
     });
 
-    const chartData = data.data[0].kr.sort((a: any, b: any) =>
+    if (!data || data.length === 0) {
+        return <div>No data available</div>;
+    }
+
+    const chartData = krData.sort((a: TokenType, b: TokenType) =>
         new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
     ).map((item: any) => ({
         name: new Date(item.timestamp).toLocaleDateString(),
         price: item.price,
     }))
 
-    const filteredData = data.data[0].kr.filter((item: any) => {
+    const filteredData = krData.filter((item: TokenType) => {
         const date = new Date(item.timestamp);
-        return date >= dateRange!.from && date <= dateRange!.to;
+        if (dateRange.from && dateRange.to) {
+            return date >= dateRange.from && date <= dateRange.to;
+        }
+        return true; // 날짜 범위가 없으면 모든 데이터 표시
     })
     .map((item: any) => ({
         name: new Date(item.timestamp).toLocaleDateString(),
@@ -47,7 +58,7 @@ const TokenChart = (data: any) => {
     }));
 
     return (
-        <div className="w-[66vw] h-[400px]">
+        <div className="w-[66vw] h-[400px] max-w-[1200px] items-center">
             <DateRangePicker
                 value={dateRange}
                 onChange={setDateRange}
@@ -75,10 +86,14 @@ const TokenChart = (data: any) => {
                                     <div style={{ 
                                         backgroundColor: '#fff',
                                         border: '1px solid #ccc',
-                                        padding: '8px'
+                                        padding: '8px',
+                                        textAlign: 'center'
                                     }}>
                                         <p style={{ color: '#666' }}>
                                             {`${label} 10:00 기준`}
+                                        </p>
+                                        <p style={{ color: '#fa812a', fontWeight: 'bold' }}>
+                                            {`${payload[0].value?.toLocaleString()} 골드`}
                                         </p>
                                     </div>
                                 );
@@ -98,12 +113,20 @@ const TokenChart = (data: any) => {
                         labelStyle={{ color: '#666' }}  // 레이블(날짜) 색상
                         itemStyle={{ color: '#fa812a' }}
                     /> */}
-                    <Legend />
+                    <Legend 
+                        verticalAlign="bottom" 
+                        align="center"
+                        wrapperStyle={{
+                            paddingTop: "20px",
+                            marginLeft: "30px"
+                        }}
+                    />
                     <Line
                         type="monotone"
                         dataKey="price"
                         stroke="#fa812a"
                         activeDot={{ r: 8 }}
+                        name="골드"
                     >
                         <LabelList 
                             position="top" 
