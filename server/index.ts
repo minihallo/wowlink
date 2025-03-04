@@ -41,7 +41,7 @@ async function updateTokenPrice() {
   }
 }
 
-cron.schedule('* * * * *', async () => {
+cron.schedule('0 * * * *', async () => {
   console.log('Running cron job to update token price');
   await updateTokenPrice();
 });
