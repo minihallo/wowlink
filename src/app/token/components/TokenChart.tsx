@@ -38,7 +38,25 @@ const TokenChart = ({data}: TokenChartProps) => {
         return <div>No data available</div>;
     }
 
-    const filteredData = krData.filter((item: TokenType) => {
+    const findLastDataPointBeforeRange = () => {
+        if (!dateRange.from) return null;
+        
+        // 선택된 날짜 범위 이전의 데이터 포인트 찾기
+        const beforeRangeData = krData
+            .filter((item: TokenType) => new Date(item.timestamp) < dateRange.from!)
+            .sort((a: TokenType, b: TokenType) => 
+                new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+            );
+            
+        // 범위 이전의 마지막 데이터 포인트 반환
+        return beforeRangeData.length > 0 ? beforeRangeData[0] : null;
+    };
+    
+    // 범위 이전의 마지막 데이터 포인트
+    const lastPointBeforeRange = findLastDataPointBeforeRange();
+    
+    // 데이터 필터링 및 변환
+    let filteredData = krData.filter((item: TokenType) => {
         const date = new Date(item.timestamp);
         if (dateRange.from && dateRange.to) {
             return date >= dateRange.from && date <= dateRange.to;
@@ -51,32 +69,63 @@ const TokenChart = ({data}: TokenChartProps) => {
         price: item.price,
         originalTimestamp: item.timestamp
     }));
+    
+    // 범위 이전의 마지막 데이터 포인트가 있으면 추가
+    if (lastPointBeforeRange && dateRange.from) {
+        // 범위 시작일 00:00에 이전 데이터 포인트의 가격을 사용하는 데이터 포인트 추가
+        const startOfDay = new Date(dateRange.from);
+        startOfDay.setHours(0, 0, 0, 0);
+        
+        // 이전 데이터 포인트를 배열 맨 앞에 추가
+        filteredData = [
+            {
+                name: startOfDay.getTime(),
+                displayName: startOfDay.toLocaleString(),
+                price: lastPointBeforeRange.price,
+                originalTimestamp: startOfDay.toISOString()
+            },
+            ...filteredData
+        ];
+    }
 
     const generateTwelveHourTicks = (dateRange: DateRange) => {
         if (!dateRange.from || !dateRange.to) return [];
         
         const ticks = [];
+        // 항상 00:00부터 시작하도록 설정
         const startDate = new Date(dateRange.from);
-        const currentHour = startDate.getHours();
-        if (currentHour < 12) {
-            startDate.setHours(0, 0, 0, 0);
-        } else {
-            startDate.setHours(12, 0, 0, 0);
-        }
+        startDate.setHours(0, 0, 0, 0);
         
         const currentDate = new Date(startDate);
         
         while (currentDate <= dateRange.to) {
-            ticks.push(currentDate.getTime());
-            if (currentDate.getHours() === 12) {
-                currentDate.setHours(0, 0, 0, 0);
-                currentDate.setDate(currentDate.getDate() + 1);
-            } else {
-                currentDate.setHours(12, 0, 0, 0);
+            ticks.push(currentDate.getTime()); // 00:00 추가
+            
+            // 12:00 추가
+            currentDate.setHours(12, 0, 0, 0);
+            if (currentDate <= dateRange.to) {
+                ticks.push(currentDate.getTime());
             }
+            
+            // 다음 날로 이동
+            currentDate.setHours(0, 0, 0, 0);
+            currentDate.setDate(currentDate.getDate() + 1);
         }
         
         return ticks;
+    }
+    
+    // 차트의 x축 도메인 계산 (0시부터 24시까지 모두 포함)
+    const calculateXDomain = () => {
+        if (!dateRange.from || !dateRange.to) return ['dataMin', 'dataMax'];
+        
+        const startDate = new Date(dateRange.from);
+        startDate.setHours(0, 0, 0, 0); // 선택한 날짜의 0시
+        
+        const endDate = new Date(dateRange.to);
+        endDate.setHours(23, 59, 59, 999); // 선택한 날짜의 23시 59분 59초
+        
+        return [startDate.getTime(), endDate.getTime()];
     }
 
     return (
@@ -93,10 +142,9 @@ const TokenChart = ({data}: TokenChartProps) => {
                     {/* <CartesianGrid strokeDasharray="3 3" /> */}
                     <XAxis 
                         dataKey="name" 
-                        padding={{ left: 30, right: 30 }}
                         scale="time"
                         type="number"
-                        domain={['dataMin', 'dataMax']}
+                        domain={calculateXDomain()}
                         ticks={generateTwelveHourTicks(dateRange)}
                         tickFormatter={(timeStr) => {
                             const date = new Date(timeStr);
@@ -145,8 +193,7 @@ const TokenChart = ({data}: TokenChartProps) => {
                         verticalAlign="bottom" 
                         align="center"
                         wrapperStyle={{
-                            paddingTop: "20px",
-                            marginLeft: "30px"
+                            paddingTop: "20px"
                         }}
                     />
                     <Line
