@@ -12,7 +12,9 @@
     "update-profiles:debug": "tsx --inspect-brk src/scripts/updateProfileImages.ts",
     "sync-db": "tsx ./src/scripts/syncDatabase.ts",
     "sync-db:debug": "tsx --inspect-brk ./src/scripts/syncDatabase.ts",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "deploy": "serverless deploy",
+    "test:links": "vitest run src/tests/linkValidator.test.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -20,6 +22,8 @@
     "@radix-ui/react-dialog": "^1.1.4",
     "@radix-ui/react-popover": "^1.1.4",
     "@radix-ui/react-slot": "^1.1.1",
+    "@sentry/nextjs": "^9.5.0",
+    "@sentry/vite-plugin": "^3.2.2",
     "@types/express": "^5.0.0",
     "@types/node-cron": "^3.0.11",
     "@vercel/analytics": "^1.4.1",
@@ -49,13 +53,19 @@
   },
   "devDependencies": {
     "@shadcn/ui": "^0.0.4",
+    "@types/aws-lambda": "^8.10.147",
     "@types/node": "^22.1.0",
+    "@types/node-fetch": "^2.6.12",
     "@types/react": "18.3.3",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",
+    "esbuild": "^0.25.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8.4.49",
+    "serverless": "^3.35.2",
+    "serverless-dotenv-plugin": "^4.0.2",
+    "serverless-esbuild": "^1.55.0",
     "tailwindcss": "^3.4.17",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"

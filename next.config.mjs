@@ -1,3 +1,5 @@
+import { withSentryConfig } from '@sentry/nextjs';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
@@ -8,4 +10,16 @@ const nextConfig = {
     },
 };
 
-export default nextConfig;
+// Sentry 옵션
+const sentryWebpackPluginOptions = {
+  silent: true, // 빌드 로그에서 Sentry 출력 조용히
+  org: "minihialla",
+  project: "wowlink",
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+};
+
+// Sentry와 함께 내보내기
+export default withSentryConfig(
+  nextConfig,
+  sentryWebpackPluginOptions
+);
