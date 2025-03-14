@@ -38,7 +38,7 @@ export default async function TokenPage() {
         </h1>
         <p className="text-xl">{tokenPrice.toLocaleString()} 골드</p>
       </div>
-      <div className="w-full max-w-[1200px] h-[400px]"> {/* max-w 추가 */}
+      <div className="w-full max-w-[1200px] h-[400px]">
         <TokenChart data={data}/>
       </div>
     </div>

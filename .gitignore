@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/serverless/node_modules
 /.pnp
 .pnp.js
 .yarn/install-state.gz
@@ -42,3 +43,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.qodo
+
+# Sentry Config File
+.env.sentry-build-plugin
