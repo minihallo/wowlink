@@ -24,8 +24,11 @@
 
 
 import { connectToDatabase } from './mongodb'
+import { cache } from 'react';
 
-export async function getData<T>(collection: string): Promise<T[]> {
+// export async function getData<T>(collection: string): Promise<T[]> {
+export const getData = cache(async <T>(collection: string): Promise<T[]> => {
+
   try {
     const { client } = await connectToDatabase();
     const db = client.db("wowlink");
@@ -40,7 +43,7 @@ export async function getData<T>(collection: string): Promise<T[]> {
     console.error(`Failed to fetch from ${collection}:`, e)
     throw new Error(`Failed to fetch from ${collection}`)
   }
-}
+});
   
 import { Site } from "@/types/site"
 export const getSites = () => getData<Site>('sites')
@@ -55,4 +58,10 @@ import { Tip } from "@/types/tip"
 export const getTips = () => getData<Tip>('tips')
 
 import { TokenDocument } from '@/types/token';
-export const getTokens = () => getData<TokenDocument>('tokens')
+export const getTokens = async () => {
+  const { unstable_noStore } = await import('next/cache');
+  unstable_noStore();
+  return getData<TokenDocument>('tokens');
+}
+
+// export const getTokens = () => getData<TokenDocument>('tokens')
