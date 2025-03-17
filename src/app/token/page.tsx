@@ -16,6 +16,8 @@ const blackHanSans = Black_Han_Sans({
   variable: '--font-black-han-sans',
 })
 
+export const revalidate = 3600; // 1시간마다 페이지 재생성
+
 export default async function TokenPage() {
   const tokenPrice = await getCurrentToken();
   const data = await getTokens();
