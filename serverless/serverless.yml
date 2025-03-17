@@ -1,0 +1,28 @@
+service: wow-token-tracker
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-northeast-2 # 서울 리전 (원하는 리전으로 변경 가능)
+  environment:
+    MONGODB_URI: "mongodb+srv://loitermin:2317mhlove@cluster-wowlink.k2w5w.mongodb.net/"
+    BLIZZARD_CLIENT_ID: "02453feda1b14852bea932da8a1ade57"
+    BLIZZARD_CLIENT_SECRET: "ai8wgzjyZWRGWNz6kJPi6f8i4i48LThx"
+    
+functions:
+  updateTokenPrice:
+    handler: functions/updateTokenPrice.handler
+    events:
+      - schedule: cron(0 * * * ? *)
+    timeout: 30 # 시간 초과 설정 (초 단위)
+    memorySize: 256 # 메모리 설정 (MB)
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-esbuild
+
+custom:
+  dotenv:
+    path: .env
+  typescript:
+    configFile: tsconfig.serverless.json

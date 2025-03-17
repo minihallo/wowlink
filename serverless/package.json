@@ -1,0 +1,8 @@
+{
+    "name": "wow-token-tracker",
+    "version": "1.0.0",
+    "description": "WoW 토큰 가격 트래커",
+    "dependencies": {
+      "mongoose": "^7.0.0"
+    }
+  }
