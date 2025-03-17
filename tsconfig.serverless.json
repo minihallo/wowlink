@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "target": "es2018",
+      "module": "commonjs",
+      "outDir": "dist",
+      "rootDir": "./",
+      "strict": true,
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "resolveJsonModule": true,
+      "noEmit": false
+    },
+    "include": ["lambda-function.ts"],
+    "exclude": ["node_modules", ".next"]
+  }
