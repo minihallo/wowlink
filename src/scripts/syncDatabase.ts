@@ -6,7 +6,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import { PathLike } from 'fs';
 
-dotenv.config({ path: '.env.local' });
+dotenv.config({ path: '.env' });
 
 const MONGODB_URI = process.env.MONGODB_URI!;
 
@@ -24,7 +24,7 @@ async function syncDatabase() {
     const db = client.db('wowlink');
 
     // 각 컬렉션 동기화
-    const collections = ['streamers'];
+    const collections = ['sites'];
 
     for (const collectionName of collections) {
       const collection = db.collection(collectionName);

@@ -14,7 +14,8 @@
     "sync-db:debug": "tsx --inspect-brk ./src/scripts/syncDatabase.ts",
     "postbuild": "next-sitemap",
     "deploy": "serverless deploy",
-    "test:links": "vitest run src/tests/linkValidator.test.ts"
+    "test:links": "vitest run src/tests/linkValidator.test.ts",
+    "add-site": "npx tsx src/scripts/addSite.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
